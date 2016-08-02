@@ -54,7 +54,9 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	}
 	public var backgroundAlpha = CGFloat(1)
 	
-	override init(frame: CGRect) {
+	// MARK: - Initialization
+	
+	override public init(frame: CGRect) {
 		contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
 		contentView.autoresizingMask = [.FlexibleWidth, .FlexibleBottomMargin]
 		
@@ -83,9 +85,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
-	func prepareMenuViewWithCells(cells: [DropDownMenuCell]) {
-		
-	}
+	// MARK: - Layout
 	
 	public override func layoutSubviews() {
 		super.layoutSubviews()
@@ -94,7 +94,9 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		contentView.frame.size.height = menuView.frame.size.height
 	}
 	
-	func tap(sender: AnyObject) {
+	// MARK: - Actions
+	
+	@IBAction public func tap(sender: AnyObject) {
 		delegate?.didTapInDropDownMenuBackground(self)
 	}
 	
@@ -108,7 +110,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		return !touchedView.isDescendantOfView(menuView)
 	}
 	
-	public func show() {
+	@IBAction public func show() {
 		precondition(container != nil, "DropDownMenu.container must be set in [presentingController viewDidAppear:]")
 
 		backgroundView?.alpha = 0
@@ -127,7 +129,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		               completion: nil)
 	}
 	
-	public func hide() {
+	@IBAction public func hide() {
 		contentView.frame.origin.y = visibleContentOffset
 		hidden = false
 		
@@ -145,7 +147,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		})
 	}
 	
-	// #pragma mark - Table View
+	// MARK: - Table View
 	
 	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
@@ -195,12 +197,14 @@ public class DropDownMenuCell : UITableViewCell {
 	public var menuAction: Selector!
 	public weak var menuTarget: AnyObject!
 	public var showsCheckmark = true
+	
+	// MARK: - Initialization
 
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		 fatalError("init(style:reuseIdentifier:) is not supported")
 	}
 	
-	init() {
+	public init() {
 		super.init(style: .Default, reuseIdentifier: NSStringFromClass(DropDownMenuCell.self))
 	}
 
@@ -208,9 +212,11 @@ public class DropDownMenuCell : UITableViewCell {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Layout
+	
 	// TODO: Share the code below with IconTextCell
 	
-	var iconSize = CGSize(width: 24, height: 24)
+	private var iconSize = CGSize(width: 24, height: 24)
 
 	override public func layoutSubviews() {
 	
