@@ -9,8 +9,8 @@ import UIKit
 
 public class DropDownTitleView : UIControl {
 
-	static var iconSize = CGSize(width: 12, height: 12)
-	lazy var menuDownImageView: UIImageView = {
+	public static var iconSize = CGSize(width: 12, height: 12)
+	public lazy var menuDownImageView: UIImageView = {
 		let menuDownImageView = UIImageView(image: UIImage(named: "Ionicons-chevron-up"))
 
 		menuDownImageView.frame.size = DropDownTitleView.iconSize
@@ -18,14 +18,14 @@ public class DropDownTitleView : UIControl {
 
 		return menuDownImageView
 	}()
-	lazy var menuUpImageView: UIImageView = {
+	public lazy var menuUpImageView: UIImageView = {
 		let menuUpImageView = UIImageView(image: UIImage(named: "Ionicons-chevron-up"))
 
 		menuUpImageView.frame.size = DropDownTitleView.iconSize
 
 		return menuUpImageView
 	}()
-	lazy var imageView: UIView = {
+	public lazy var imageView: UIView = {
 		// For flip animation, we need a container view
 		// See http://stackoverflow.com/questions/11847743/transitionfromview-and-strange-behavior-with-flip
 		let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: DropDownTitleView.iconSize))
@@ -34,7 +34,7 @@ public class DropDownTitleView : UIControl {
 
 		return imageView
 	}()
-	lazy var titleLabel: UILabel = {
+	public lazy var titleLabel: UILabel = {
 		let titleLabel = UILabel()
 
 		titleLabel.font = UIFont.boldSystemFontOfSize(titleLabel.font.pointSize)
@@ -56,6 +56,8 @@ public class DropDownTitleView : UIControl {
 		}
 	}
 	public var isUp: Bool { return menuUpImageView.superview != nil }
+	
+	// MARK: - Initialization
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -85,6 +87,8 @@ public class DropDownTitleView : UIControl {
 		title = "Untitled"
 	}
 	
+	// MARK: - Layout
+	
 	override public func sizeThatFits(size: CGSize) -> CGSize {
 		return CGSize(width: imageView.frame.maxX, height: frame.size.height)
 	}
@@ -99,7 +103,9 @@ public class DropDownTitleView : UIControl {
 		imageView.center.y = frame.height / 2
 	}
 	
-	public func toggleMenu() {
+	// MARK: - Actions
+	
+	@IBAction public func toggleMenu() {
 		let viewToReplace = isUp ? menuUpImageView : menuDownImageView
 		let replacementView = isUp ? menuDownImageView : menuUpImageView
 		let options = isUp ? UIViewAnimationOptions.TransitionFlipFromTop : UIViewAnimationOptions.TransitionFlipFromBottom
