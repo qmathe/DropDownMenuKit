@@ -14,7 +14,6 @@
 		6009E24E1D5119DF006424BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2481D5119DF006424BD /* Assets.xcassets */; };
 		6009E24F1D5119DF006424BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2491D5119DF006424BD /* LaunchScreen.storyboard */; };
 		6009E2501D5119DF006424BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6009E24B1D5119DF006424BD /* Main.storyboard */; };
-		6009E2531D5119F6006424BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2521D5119F6006424BD /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +26,8 @@
 		6009E24A1D5119DF006424BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Example/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		6009E24C1D5119DF006424BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Example/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		6009E2521D5119F6006424BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
+		6009E27A1D522802006424BD /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6009E27B1D522802006424BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +44,10 @@
 		6009E2211D5117FC006424BD = {
 			isa = PBXGroup;
 			children = (
-				6009E22C1D5117FC006424BD /* DropDownMenu */,
+				6009E27B1D522802006424BD /* README.md */,
+				6009E27A1D522802006424BD /* LICENSE */,
+				6009E2401D511955006424BD /* DropDownMenu.swift */,
+				6009E2411D511955006424BD /* DropDownTitleView.swift */,
 				6009E23F1D511939006424BD /* Example */,
 				6009E22B1D5117FC006424BD /* Products */,
 			);
@@ -55,15 +59,6 @@
 				6009E22A1D5117FC006424BD /* DropDownMenu.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6009E22C1D5117FC006424BD /* DropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				6009E2401D511955006424BD /* DropDownMenu.swift */,
-				6009E2411D511955006424BD /* DropDownTitleView.swift */,
-			);
-			name = DropDownMenu;
 			sourceTree = "<group>";
 		};
 		6009E23F1D511939006424BD /* Example */ = {
@@ -137,7 +132,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6009E2531D5119F6006424BD /* Info.plist in Resources */,
 				6009E2501D5119DF006424BD /* Main.storyboard in Resources */,
 				6009E24E1D5119DF006424BD /* Assets.xcassets in Resources */,
 				6009E24F1D5119DF006424BD /* LaunchScreen.storyboard in Resources */,
@@ -217,7 +211,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -256,7 +250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -267,8 +261,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quentinmathe.DropDownMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -279,8 +273,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quentinmathe.DropDownMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
