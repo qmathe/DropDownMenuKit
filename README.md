@@ -9,6 +9,10 @@ The control is made up of three parts:
 - DropDownMenuCell: a menu entry, implemented as a UITableViewCell subclass
 - DropDownMenuTitleView: an optional title view to toggle the menu, which is usually put in the navigation bar and acts as a disclosure indicator
 
+<img src="http://www.quentinmathe.com/github/DropDownMenu/History%20Views%20-%20iPhone%205.png" width="700" alt="Screenshot" />
+
+To see in action, take a look at the very beginning of [Placeboard](http://www.placeboardapp.com) demo video.
+
 Compatibility
 -------------
 
