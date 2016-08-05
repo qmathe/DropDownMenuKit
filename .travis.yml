@@ -1,0 +1,8 @@
+language: objective-c
+notifications:
+  email:
+    recipients:
+      - quentin.mathe@gmail.com
+xcode_project: DropDownMenu.xcodeproj
+xcode_scheme: DropDownMenu
+osx_image: xcode7.3
