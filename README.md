@@ -23,7 +23,33 @@ Compatibility
 
 DropDownMenu requires iOS 7 or higher and is written in Swift 2.2.
 
+**Note**: If you use Carthage, CocoaPods or manually install it as a framework, iOS 8 is required.
+
 Installation
 ------------
 
-Just drop DropDownMenu.swift and DropDownTitleView.swift in your Xcode project.
+### Carthage
+
+Add the following line to your Cartfile, run `carthage update` to build the framework and drag the built DropDownMenu.framework into your Xcode project.
+
+    github "qmathe/DropDownMenu"
+	
+### CocoaPods
+
+Add the following lines to your Podfile and run `pod install` with CocoaPods 0.36 or newer.
+
+	use_frameworks!
+	
+	pod "DropDownMenu"
+
+### Manually
+
+If you don't use Carthage or CocoaPods, it's possible to drag the built framework or embed the source files into your project.
+
+#### Framework
+
+Build DropDownMenu framework and drop it into your Xcode project.
+
+#### Files
+
+Drop DropDownMenu.swift, DropDownTitleView.swift and DropDownMenu.xcassets into your Xcode project.
