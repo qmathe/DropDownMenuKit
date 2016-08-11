@@ -41,7 +41,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 				contentView.frame.origin.y = visibleContentOffset
 			}
 			else {
-				contentView.frame.origin.y = container.frame.height - visibleContentOffset
+				contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentOffset
 			}
 		}
 	}
@@ -123,6 +123,10 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	
 	@IBAction public func show() {
 		precondition(container != nil, "DropDownMenu.container must be set in [presentingController viewDidAppear:]")
+		
+		if !hidden {
+			return
+		}
 
 		backgroundView?.alpha = 0
 		if direction == .Down {
@@ -151,6 +155,11 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	}
 	
 	@IBAction public func hide() {
+	
+		if hidden {
+			return
+		}
+
 		if direction == .Down {
 			contentView.frame.origin.y = visibleContentOffset
 		}

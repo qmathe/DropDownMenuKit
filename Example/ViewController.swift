@@ -21,6 +21,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		prepareNavigationBarMenu(title)
 		prepareToolbarMenu()
+		updateMenuContentOffsets()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -37,10 +38,10 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		// even when title view is moved to remain centered (but never resized).
 		titleView = DropDownTitleView(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
 		titleView.addTarget(self,
-		            action: #selector(ViewController.willToggleMenu(_:)),
+		            action: #selector(ViewController.willToggleNavigationBarMenu(_:)),
 		          forControlEvents: .TouchUpInside)
 		titleView.addTarget(self,
-		                    action: #selector(ViewController.didToggleMenu(_:)),
+		                    action: #selector(ViewController.didToggleNavigationBarMenu(_:)),
 		          forControlEvents: .ValueChanged)
 		titleView.titleLabel.textColor = UIColor.blackColor()
 		titleView.title = "Large"
@@ -86,7 +87,6 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	}
 
 	func prepareToolbarMenu() {
-
 		toolbarMenu = DropDownMenu(frame: view.bounds)
 		toolbarMenu.delegate = self
 		
@@ -111,17 +111,31 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		sortCell.showsCheckmark = false
 
 		toolbarMenu.menuCells = [selectCell, sortCell]
-
-		// If we set the container to the controller view, the value must be set
-		// on the hidden content offset (not the visible one)
-		toolbarMenu.visibleContentOffset =
-			navigationController!.toolbar.frame.size.height
 		toolbarMenu.direction = .Up
 
 		// For a simple gray overlay in background
 		toolbarMenu.backgroundView = UIView(frame: toolbarMenu.bounds)
 		toolbarMenu.backgroundView!.backgroundColor = UIColor.blackColor()
 		toolbarMenu.backgroundAlpha = 0.7
+	}
+	
+	// If we set the container to the controller view, the value must be set on
+	// the hidden content offset (not the visible one)
+	func updateMenuContentOffsets() {
+		navigationBarMenu.visibleContentOffset =
+			navigationController!.navigationBar.frame.size.height + statusBarHeight()
+		toolbarMenu.visibleContentOffset =
+			navigationController!.toolbar.frame.size.height
+	}
+	
+	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+
+		coordinator.animateAlongsideTransition({ (context) in
+			// If we put this only in -viewDidLayoutSubviews, menu animation is 
+			// messed up when selecting a an item
+			self.updateMenuContentOffsets()
+		}, completion: nil)
 	}
 
 	@IBAction func choose(sender: AnyObject) {
@@ -137,10 +151,15 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	}
 
 	@IBAction func showToolbarMenu() {
+		if titleView.isUp {
+			titleView.toggleMenu()
+		}
 		toolbarMenu.show()
 	}
-	
-	@IBAction func willToggleMenu(sender: DropDownTitleView) {
+
+	@IBAction func willToggleNavigationBarMenu(sender: DropDownTitleView) {
+		toolbarMenu.hide()
+
 		if sender.isUp {
 			navigationBarMenu.hide()
 		}
@@ -149,12 +168,17 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		}
 	}
 
-	@IBAction func didToggleMenu(sender: DropDownTitleView) {
-		print("Sent did toggle menu action")
+	@IBAction func didToggleNavigationBarMenu(sender: DropDownTitleView) {
+		print("Sent did toggle navigation bar menu action")
 	}
 
 	func didTapInDropDownMenuBackground(menu: DropDownMenu) {
-		menu.hide()
+		if menu == navigationBarMenu {
+			titleView.toggleMenu()
+		}
+		else {
+			menu.hide()
+		}
 	}
 }
 
