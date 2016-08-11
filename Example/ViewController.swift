@@ -150,7 +150,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	}
 
 	@IBAction func didToggleMenu(sender: DropDownTitleView) {
-		print("Sent did toogle menu action")
+		print("Sent did toggle menu action")
 	}
 
 	func didTapInDropDownMenuBackground(menu: DropDownMenu) {
