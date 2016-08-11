@@ -37,8 +37,6 @@ public class DropDownMenuCell : UITableViewCell {
 	
 	// MARK: - Layout
 	
-	// TODO: Share the code below with IconTextCell
-	
 	private var iconSize = CGSize(width: 24, height: 24)
 
 	override public func layoutSubviews() {

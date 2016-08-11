@@ -5,3 +5,6 @@ Drop Down Menu TODO
 - Add DropDownMenuDelegate.needsBackgroundTransition to let the client cancels the background alpha animation when a menu is hidden and another one is shown immediately
 - Add some presentation options for DropDownMenuCell to support UI patterns commonly seen in Apple's apps
 - May be make easier to customize DropDownMenuCell layout
+- Share code or reuse IconTextCell for DropDownMenuCell
+- Add NSCoding support to DropDownMenuCell
+- Better documentation (API and README)
