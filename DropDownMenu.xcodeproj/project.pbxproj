@@ -18,6 +18,7 @@
 		600E8C911D5B76AC00AFD10E /* DropDownTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6009E2411D511955006424BD /* DropDownTitleView.swift */; };
 		600E8C931D5B76DD00AFD10E /* DropDownMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 600E8C921D5B76DD00AFD10E /* DropDownMenu.xcassets */; };
 		600E8C961D5B78B800AFD10E /* DropDownMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 600E8C941D5B78B800AFD10E /* DropDownMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		600E8CA71D5C938900AFD10E /* DropDownMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600E8CA51D5C935E00AFD10E /* DropDownMenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		600E8C941D5B78B800AFD10E /* DropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownMenu.h; sourceTree = "<group>"; };
 		600E8C951D5B78B800AFD10E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		600E8CA21D5C7D1800AFD10E /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		600E8CA51D5C935E00AFD10E /* DropDownMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				600E8CA21D5C7D1800AFD10E /* TODO.md */,
 				6009E27A1D522802006424BD /* LICENSE */,
 				6009E2401D511955006424BD /* DropDownMenu.swift */,
+				600E8CA51D5C935E00AFD10E /* DropDownMenuCell.swift */,
 				6009E2411D511955006424BD /* DropDownTitleView.swift */,
 				600E8C941D5B78B800AFD10E /* DropDownMenu.h */,
 				600E8C951D5B78B800AFD10E /* Info.plist */,
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				600E8CA71D5C938900AFD10E /* DropDownMenuCell.swift in Sources */,
 				600E8C911D5B76AC00AFD10E /* DropDownTitleView.swift in Sources */,
 				600E8C901D5B76AA00AFD10E /* DropDownMenu.swift in Sources */,
 			);
