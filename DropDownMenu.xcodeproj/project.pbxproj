@@ -60,6 +60,7 @@
 		600E8C921D5B76DD00AFD10E /* DropDownMenu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DropDownMenu.xcassets; sourceTree = "<group>"; };
 		600E8C941D5B78B800AFD10E /* DropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownMenu.h; sourceTree = "<group>"; };
 		600E8C951D5B78B800AFD10E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		600E8CA21D5C7D1800AFD10E /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				6009E27B1D522802006424BD /* README.md */,
+				600E8CA21D5C7D1800AFD10E /* TODO.md */,
 				6009E27A1D522802006424BD /* LICENSE */,
 				6009E2401D511955006424BD /* DropDownMenu.swift */,
 				6009E2411D511955006424BD /* DropDownTitleView.swift */,
@@ -457,6 +459,7 @@
 				600E8C8E1D5B759300AFD10E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
