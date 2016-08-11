@@ -7,4 +7,5 @@ Drop Down Menu TODO
 - May be make easier to customize DropDownMenuCell layout
 - Share code or reuse IconTextCell for DropDownMenuCell
 - Add NSCoding support to DropDownMenuCell
+- Update example to showcase hiddenContentOffset
 - Better documentation (API and README)
