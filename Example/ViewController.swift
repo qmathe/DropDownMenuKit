@@ -115,7 +115,8 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		// If we set the container to the controller view, the value must be set
 		// on the hidden content offset (not the visible one)
 		toolbarMenu.visibleContentOffset =
-			navigationController!.navigationBar.frame.size.height + statusBarHeight()
+			navigationController!.toolbar.frame.size.height
+		toolbarMenu.direction = .Up
 
 		// For a simple gray overlay in background
 		toolbarMenu.backgroundView = UIView(frame: toolbarMenu.bounds)

@@ -11,6 +11,11 @@ import UIKit
 	func didTapInDropDownMenuBackground(menu: DropDownMenu)
 }
 
+public enum DropDownMenuRevealDirection {
+	case Up
+	case Down
+}
+
 
 public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
 
@@ -32,9 +37,15 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 			if hidden {
 				return
 			}
-			contentView.frame.origin.y = visibleContentOffset
+			if direction == .Down {
+				contentView.frame.origin.y = visibleContentOffset
+			}
+			else {
+				contentView.frame.origin.y = container.frame.height - visibleContentOffset
+			}
 		}
 	}
+	public var direction = DropDownMenuRevealDirection.Down
 	public let menuView: UITableView
 	public var menuCells = [DropDownMenuCell]() {
 		didSet {
@@ -114,7 +125,12 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		precondition(container != nil, "DropDownMenu.container must be set in [presentingController viewDidAppear:]")
 
 		backgroundView?.alpha = 0
-		contentView.frame.origin.y = -(contentView.frame.size.height + hiddenContentOffset)
+		if direction == .Down {
+			contentView.frame.origin.y = -(contentView.frame.height + hiddenContentOffset)
+		}
+		else {
+			contentView.frame.origin.y = container.frame.height + hiddenContentOffset
+		}
 		hidden = false
 
 		UIView.animateWithDuration(0.4,
@@ -123,14 +139,24 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		    initialSpringVelocity: 1,
 		                  options: .CurveEaseInOut,
 		               animations: {
-			self.contentView.frame.origin.y = self.visibleContentOffset
+			if self.direction == .Down {
+				self.contentView.frame.origin.y = self.visibleContentOffset
+			}
+			else {
+				self.contentView.frame.origin.y = self.container.frame.height - self.contentView.frame.height  - self.visibleContentOffset
+			}
 			self.backgroundView?.alpha = self.backgroundAlpha
 		},
 		               completion: nil)
 	}
 	
 	@IBAction public func hide() {
-		contentView.frame.origin.y = visibleContentOffset
+		if direction == .Down {
+			contentView.frame.origin.y = visibleContentOffset
+		}
+		else {
+			contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentOffset
+		}
 		hidden = false
 		
 		UIView.animateWithDuration(0.4,
@@ -139,7 +165,12 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		    initialSpringVelocity: 1,
 		                  options: .CurveEaseInOut,
 		               animations: {
-			self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentOffset)
+			if self.direction == .Down {
+				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentOffset)
+			}
+			else {
+				self.contentView.frame.origin.y = self.container.frame.height + self.hiddenContentOffset
+			}
 			self.backgroundView?.alpha = 0
 		},
 				       completion: { (Bool) in
