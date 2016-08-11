@@ -28,10 +28,24 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	}
 	// The content view fills the entire container, so we can use it to fade 
 	// the background view in and out.
+	//
 	// By default, it contains the menu view, but other subviews can be added to 
 	// it and laid out by overriding -layoutSubviews.
 	public let contentView: UIView
+	// This hidden offset can be used to customize the position of the menu at
+	// the end of the hiding animation.
+	//
+	// If the container doesn't extend under the toolbar and navigation bar,
+	// this is useful to ensure the hiding animation continues until the menu is
+	// positioned outside of the screen, rather than stopping the animation when 
+	// the menu is covered by the toolbar or navigation bar.
 	public var hiddenContentOffset = CGFloat(0)
+	// This visible offset can be used to customize the position of the menu 
+	// at the end of the showing animation.
+	//
+	// If the container extends under the toolbar and navigation bar, this is 
+	// useful to ensure the menu won't be covered by the toolbar or navigation 
+	// bar once the showing animation is done.
 	public var visibleContentOffset = CGFloat(0) {
 		didSet {
 			if hidden {
@@ -53,7 +67,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		}
 	}
 	// The background view to be faded out with the background alpha, when the 
-	// menu drops down over it
+	// menu slides over it
 	public var backgroundView: UIView? {
 		didSet {
 			oldValue?.removeFromSuperview()

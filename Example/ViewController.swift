@@ -118,9 +118,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		toolbarMenu.backgroundView!.backgroundColor = UIColor.blackColor()
 		toolbarMenu.backgroundAlpha = 0.7
 	}
-	
-	// If we set the container to the controller view, the value must be set on
-	// the hidden content offset (not the visible one)
+
 	func updateMenuContentOffsets() {
 		navigationBarMenu.visibleContentOffset =
 			navigationController!.navigationBar.frame.size.height + statusBarHeight()
@@ -133,7 +131,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		coordinator.animateAlongsideTransition({ (context) in
 			// If we put this only in -viewDidLayoutSubviews, menu animation is 
-			// messed up when selecting a an item
+			// messed up when selecting an item
 			self.updateMenuContentOffsets()
 		}, completion: nil)
 	}
