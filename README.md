@@ -23,7 +23,7 @@ Compatibility
 
 DropDownMenu requires iOS 8 or higher and is written in Swift 2.2.
 
-**Note**: If are interested in iOS 7 support, rewrite DropDownTitleView.imageNamed(:) and drop the files into your project manually.
+**Note**: If you are interested in iOS 7 support, rewrite DropDownTitleView.imageNamed(:).
 
 Installation
 ------------
