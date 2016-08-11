@@ -11,7 +11,7 @@ public class DropDownTitleView : UIControl {
 
 	public static var iconSize = CGSize(width: 12, height: 12)
 	public lazy var menuDownImageView: UIImageView = {
-		let menuDownImageView = UIImageView(image: UIImage(named: "Ionicons-chevron-up"))
+		let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
 		menuDownImageView.frame.size = DropDownTitleView.iconSize
 		menuDownImageView.transform = CGAffineTransformMakeScale(1, -1)
@@ -19,7 +19,7 @@ public class DropDownTitleView : UIControl {
 		return menuDownImageView
 	}()
 	public lazy var menuUpImageView: UIImageView = {
-		let menuUpImageView = UIImageView(image: UIImage(named: "Ionicons-chevron-up"))
+		let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
 		menuUpImageView.frame.size = DropDownTitleView.iconSize
 
@@ -85,6 +85,11 @@ public class DropDownTitleView : UIControl {
 		addGestureRecognizer(recognizer)
 		
 		title = "Untitled"
+	}
+	
+	func imageNamed(name: String) -> UIImage {
+		let bundle = NSBundle(forClass: self.dynamicType)
+		return UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)!
 	}
 	
 	// MARK: - Layout
