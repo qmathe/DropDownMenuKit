@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6009E2461D5119BF006424BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6009E2441D5119BF006424BD /* AppDelegate.swift */; };
 		6009E2471D5119BF006424BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6009E2451D5119BF006424BD /* ViewController.swift */; };
-		6009E24E1D5119DF006424BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2481D5119DF006424BD /* Assets.xcassets */; };
 		6009E24F1D5119DF006424BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2491D5119DF006424BD /* LaunchScreen.storyboard */; };
 		6009E2501D5119DF006424BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6009E24B1D5119DF006424BD /* Main.storyboard */; };
 		600E8C8A1D5B759300AFD10E /* DropDownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600E8C831D5B759300AFD10E /* DropDownMenu.framework */; };
@@ -19,6 +18,7 @@
 		600E8C931D5B76DD00AFD10E /* DropDownMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 600E8C921D5B76DD00AFD10E /* DropDownMenu.xcassets */; };
 		600E8C961D5B78B800AFD10E /* DropDownMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 600E8C941D5B78B800AFD10E /* DropDownMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		600E8CA71D5C938900AFD10E /* DropDownMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600E8CA51D5C935E00AFD10E /* DropDownMenuCell.swift */; };
+		60495BFE1D6B5AFF0016987F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6009E2481D5119DF006424BD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,7 +217,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6009E2501D5119DF006424BD /* Main.storyboard in Resources */,
-				6009E24E1D5119DF006424BD /* Assets.xcassets in Resources */,
 				6009E24F1D5119DF006424BD /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60495BFE1D6B5AFF0016987F /* Assets.xcassets in Resources */,
 				600E8C931D5B76DD00AFD10E /* DropDownMenu.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
