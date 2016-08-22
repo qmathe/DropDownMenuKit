@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = "UIKit drop down menu, simple yet flexible and written in Swift"
   s.description  = "DropDownMenu is a custom UIKit control to show a menu attached to the navigation bar or toolbar. The menu appears with a sliding animation and can be deeply customized. For example, with icons, embedded controls, or a checkmark to denote a selected row among multiple menu cells."
   s.homepage     = "https://github.com/qmathe/DropDownMenu"
-  s.screenshots  = "http://www.quentinmathe.com/github/DistancePicker/Add%20Place%20with%20Search%20Radius%20-%20iPhone%205.jpg"
+  s.screenshots  = "http://www.quentinmathe.com/github/DropDownMenu/App%20History%20Menu%20-%20iPhone%205.png"
   s.license      = "MIT"
   s.author             = { "Quentin Mathé" => "quentin.mathe@gmail.com" }
   s.social_media_url   = "http://twitter.com/quentin_mathe"
