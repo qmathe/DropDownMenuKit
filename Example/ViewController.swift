@@ -6,7 +6,7 @@
  */
 
 import UIKit
-import DropDownMenu
+import DropDownMenuKit
 
 class ViewController: UIViewController, DropDownMenuDelegate {
 
