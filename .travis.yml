@@ -3,7 +3,7 @@ notifications:
   email:
     recipients:
       - quentin.mathe@gmail.com
-xcode_project: DropDownMenu.xcodeproj
-xcode_scheme: DropDownMenu
+xcode_project: DropDownMenuKit.xcodeproj
+xcode_scheme: DropDownMenuExample
 osx_image: xcode7.3
-script: xctool -project DropDownMenu.xcodeproj -scheme DropDownMenu build  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xctool -project DropDownMenuKit.xcodeproj -scheme DropDownMenuExample build  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
