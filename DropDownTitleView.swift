@@ -56,6 +56,7 @@ public class DropDownTitleView : UIControl {
 		}
 	}
 	public var isUp: Bool { return menuUpImageView.superview != nil }
+	public var toggling = false
 	
 	// MARK: - Initialization
 	
@@ -111,6 +112,10 @@ public class DropDownTitleView : UIControl {
 	// MARK: - Actions
 	
 	@IBAction public func toggleMenu() {
+		if toggling {
+			return
+		}
+		toggling = true
 		let viewToReplace = isUp ? menuUpImageView : menuDownImageView
 		let replacementView = isUp ? menuDownImageView : menuUpImageView
 		let options = isUp ? UIViewAnimationOptions.TransitionFlipFromTop : UIViewAnimationOptions.TransitionFlipFromBottom
@@ -121,6 +126,9 @@ public class DropDownTitleView : UIControl {
 		                  toView: replacementView,
 		                duration: 0.4,
 		                 options: options,
-		              completion: { (Bool) in self.sendActionsForControlEvents(.ValueChanged) })
+		              completion: { (Bool) in
+			self.sendActionsForControlEvents(.ValueChanged)
+			self.toggling = false
+		})
 	}
 }
