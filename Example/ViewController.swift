@@ -74,6 +74,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		}
 
 		navigationBarMenu.menuCells = [firstCell, secondCell]
+		navigationBarMenu.selectMenuCell(secondCell)
 		
 		// If we set the container to the controller view, the value must be set
 		// on the hidden content offset (not the visible one)

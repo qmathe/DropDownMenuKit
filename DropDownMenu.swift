@@ -119,6 +119,22 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		contentView.frame.size.height = menuView.frame.size.height
 	}
 	
+	// MARK: - Selection
+	
+	/// Selects the cell briefly and sends the cell menu action.
+	///
+	/// If DropDownMenuCell.showsCheckmark is true, then the cell is marked with
+	/// a checkmark and all other cells are unchecked.
+	public func selectMenuCell(cell: DropDownMenuCell) {
+		guard let index = menuCells.indexOf(cell) else {
+			fatalError("The menu cell to select must belong to the menu")
+		}
+		let indexPath = NSIndexPath(forRow: index, inSection: 0)
+
+    	menuView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+		tableView(menuView, didSelectRowAtIndexPath: indexPath)
+	}
+
 	// MARK: - Actions
 	
 	@IBAction public func tap(sender: AnyObject) {
