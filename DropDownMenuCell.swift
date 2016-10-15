@@ -7,9 +7,9 @@
 
 import UIKit
 
-public class DropDownMenuCell : UITableViewCell {
+open class DropDownMenuCell : UITableViewCell {
 	
-	public var customView: UIView? {
+	open var customView: UIView? {
 		didSet {
 			guard let customView = customView else {
 				return
@@ -17,9 +17,9 @@ public class DropDownMenuCell : UITableViewCell {
 			contentView.addSubview(customView)
 		}
 	}
-	public var menuAction: Selector!
-	public weak var menuTarget: AnyObject!
-	public var showsCheckmark = true
+	open var menuAction: Selector!
+	open weak var menuTarget: AnyObject!
+	open var showsCheckmark = true
 	
 	// MARK: - Initialization
 
@@ -28,7 +28,7 @@ public class DropDownMenuCell : UITableViewCell {
 	}
 	
 	public init() {
-		super.init(style: .Default, reuseIdentifier: NSStringFromClass(DropDownMenuCell.self))
+		super.init(style: .default, reuseIdentifier: NSStringFromClass(DropDownMenuCell.self))
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
@@ -37,26 +37,26 @@ public class DropDownMenuCell : UITableViewCell {
 	
 	// MARK: - Layout
 	
-	private var iconSize = CGSize(width: 24, height: 24)
+	fileprivate var iconSize = CGSize(width: 24, height: 24)
 
-	override public func layoutSubviews() {
+	override open func layoutSubviews() {
 	
 		if let textLabel = textLabel {
 			if customView != nil && textLabel.text == nil {
 				textLabel.text = "Custom View Origin Hint"
 			}
-			textLabel.hidden = customView != nil
+			textLabel.isHidden = customView != nil
 		}
 
 		super.layoutSubviews()
 
-		if let imageView = imageView where imageView.image != nil {
+		if let imageView = imageView , imageView.image != nil {
 			imageView.frame.size = iconSize
 			imageView.center = CGPoint(x: imageView.center.x, y: bounds.size.height / 2)
 		}
 		
 		if let customView = customView {
-			if let textLabel = textLabel where imageView?.image != nil {
+			if let textLabel = textLabel , imageView?.image != nil {
 				customView.frame.origin.x = textLabel.frame.origin.x
 			}
 			else

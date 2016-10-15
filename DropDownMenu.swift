@@ -8,19 +8,19 @@
 import UIKit
 
 @objc public protocol DropDownMenuDelegate {
-	func didTapInDropDownMenuBackground(menu: DropDownMenu)
+	func didTapInDropDownMenuBackground(_ menu: DropDownMenu)
 }
 
 public enum DropDownMenuRevealDirection {
-	case Up
-	case Down
+	case up
+	case down
 }
 
 
-public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
+open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
 
-	public weak var delegate: DropDownMenuDelegate?
-	public var container: UIView! {
+	open weak var delegate: DropDownMenuDelegate?
+	open var container: UIView! {
 		didSet {
 			removeFromSuperview()
 			container.addSubview(self)
@@ -31,7 +31,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	//
 	// By default, it contains the menu view, but other subviews can be added to 
 	// it and laid out by overriding -layoutSubviews.
-	public let contentView: UIView
+	open let contentView: UIView
 	// This hidden offset can be used to customize the position of the menu at
 	// the end of the hiding animation.
 	//
@@ -39,19 +39,19 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	// this is useful to ensure the hiding animation continues until the menu is
 	// positioned outside of the screen, rather than stopping the animation when 
 	// the menu is covered by the toolbar or navigation bar.
-	public var hiddenContentOffset = CGFloat(0)
+	open var hiddenContentOffset = CGFloat(0)
 	// This visible offset can be used to customize the position of the menu 
 	// at the end of the showing animation.
 	//
 	// If the container extends under the toolbar and navigation bar, this is 
 	// useful to ensure the menu won't be covered by the toolbar or navigation 
 	// bar once the showing animation is done.
-	public var visibleContentOffset = CGFloat(0) {
+	open var visibleContentOffset = CGFloat(0) {
 		didSet {
-			if hidden {
+			if isHidden {
 				return
 			}
-			if direction == .Down {
+			if direction == .down {
 				contentView.frame.origin.y = visibleContentOffset
 			}
 			else {
@@ -59,35 +59,35 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 			}
 		}
 	}
-	public var direction = DropDownMenuRevealDirection.Down
-	public let menuView: UITableView
-	public var menuCells = [DropDownMenuCell]() {
+	open var direction = DropDownMenuRevealDirection.down
+	open let menuView: UITableView
+	open var menuCells = [DropDownMenuCell]() {
 		didSet {
 			menuView.reloadData()
 		}
 	}
 	// The background view to be faded out with the background alpha, when the 
 	// menu slides over it
-	public var backgroundView: UIView? {
+	open var backgroundView: UIView? {
 		didSet {
 			oldValue?.removeFromSuperview()
-			backgroundView?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+			backgroundView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 			if let backgroundView = backgroundView {
 				insertSubview(backgroundView, belowSubview: contentView)
 			}
 		}
 	}
-	public var backgroundAlpha = CGFloat(1)
+	open var backgroundAlpha = CGFloat(1)
 	
 	// MARK: - Initialization
 	
 	override public init(frame: CGRect) {
 		contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-		contentView.autoresizingMask = [.FlexibleWidth, .FlexibleBottomMargin]
+		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
 		
 		menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-		menuView.autoresizingMask = .FlexibleWidth
-		menuView.scrollEnabled = false
+		menuView.autoresizingMask = .flexibleWidth
+		menuView.isScrollEnabled = false
 
 		contentView.addSubview(menuView)
 
@@ -100,8 +100,8 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		menuView.dataSource = self
 		menuView.delegate = self
 
-		autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-		hidden = true
+		autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		isHidden = true
 
 		addSubview(contentView)
 	}
@@ -112,7 +112,7 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	
 	// MARK: - Layout
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		menuView.sizeToFit()
@@ -125,55 +125,55 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 	///
 	/// If DropDownMenuCell.showsCheckmark is true, then the cell is marked with
 	/// a checkmark and all other cells are unchecked.
-	public func selectMenuCell(cell: DropDownMenuCell) {
-		guard let index = menuCells.indexOf(cell) else {
+	open func selectMenuCell(_ cell: DropDownMenuCell) {
+		guard let index = menuCells.index(of: cell) else {
 			fatalError("The menu cell to select must belong to the menu")
 		}
-		let indexPath = NSIndexPath(forRow: index, inSection: 0)
+		let indexPath = IndexPath(row: index, section: 0)
 
-    	menuView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-		tableView(menuView, didSelectRowAtIndexPath: indexPath)
+    	menuView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+		tableView(menuView, didSelectRowAt: indexPath)
 	}
 
 	// MARK: - Actions
 	
-	@IBAction public func tap(sender: AnyObject) {
+	@IBAction open func tap(_ sender: AnyObject) {
 		delegate?.didTapInDropDownMenuBackground(self)
 	}
 	
 	// If we declare a protocol method private, it is not called anymore.
-	public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+	open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
 		precondition(gestureRecognizer.view == self)
 
 		guard let touchedView = touch.view else {
 			return true
 		}
-		return !touchedView.isDescendantOfView(menuView)
+		return !touchedView.isDescendant(of: menuView)
 	}
 	
-	@IBAction public func show() {
+	@IBAction open func show() {
 		precondition(container != nil, "DropDownMenu.container must be set in [presentingController viewDidAppear:]")
 		
-		if !hidden {
+		if !isHidden {
 			return
 		}
 
 		backgroundView?.alpha = 0
-		if direction == .Down {
+		if direction == .down {
 			contentView.frame.origin.y = -(contentView.frame.height + hiddenContentOffset)
 		}
 		else {
 			contentView.frame.origin.y = container.frame.height + hiddenContentOffset
 		}
-		hidden = false
+		isHidden = false
 
-		UIView.animateWithDuration(0.4,
+		UIView.animate(withDuration: 0.4,
 		                    delay: 0,
 		   usingSpringWithDamping: 1,
 		    initialSpringVelocity: 1,
-		                  options: .CurveEaseInOut,
+		                  options: UIViewAnimationOptions(),
 		               animations: {
-			if self.direction == .Down {
+			if self.direction == .down {
 				self.contentView.frame.origin.y = self.visibleContentOffset
 			}
 			else {
@@ -184,27 +184,27 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 		               completion: nil)
 	}
 	
-	@IBAction public func hide() {
+	@IBAction open func hide() {
 	
-		if hidden {
+		if isHidden {
 			return
 		}
 
-		if direction == .Down {
+		if direction == .down {
 			contentView.frame.origin.y = visibleContentOffset
 		}
 		else {
 			contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentOffset
 		}
-		hidden = false
+		isHidden = false
 		
-		UIView.animateWithDuration(0.4,
+		UIView.animate(withDuration: 0.4,
 		                    delay: 0,
 		   usingSpringWithDamping: 1,
 		    initialSpringVelocity: 1,
-		                  options: .CurveEaseInOut,
+		                  options: UIViewAnimationOptions(),
 		               animations: {
-			if self.direction == .Down {
+			if self.direction == .down {
 				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentOffset)
 			}
 			else {
@@ -213,42 +213,42 @@ public class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, 
 			self.backgroundView?.alpha = 0
 		},
 				       completion: { (Bool) in
-			self.hidden = true
+			self.isHidden = true
 		})
 	}
 	
 	// MARK: - Table View
 	
-	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	open func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return menuCells.count
 	}
 
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		return menuCells[indexPath.row]
+	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		return menuCells[(indexPath as NSIndexPath).row]
 	}
 	
-	public func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-		return menuCells[indexPath.row].menuAction != nil
+	open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+		return menuCells[(indexPath as NSIndexPath).row].menuAction != nil
 	}
 
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let cell = menuCells[indexPath.row]
+	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = menuCells[(indexPath as NSIndexPath).row]
 		
 		for cell in menuCells {
-			cell.accessoryType = .None
+			cell.accessoryType = .none
 		}
-		cell.accessoryType = cell.showsCheckmark ? .Checkmark : .None
+		cell.accessoryType = cell.showsCheckmark ? .checkmark : .none
 		
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 		
 		if cell.menuAction == nil {
 			return
 		}
 
-		UIApplication.sharedApplication().sendAction(cell.menuAction, to: cell.menuTarget, from: cell, forEvent: nil)
+		UIApplication.shared.sendAction(cell.menuAction, to: cell.menuTarget, from: cell, for: nil)
 	}
 }
