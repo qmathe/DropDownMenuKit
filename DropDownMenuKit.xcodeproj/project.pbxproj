@@ -63,6 +63,7 @@
 		600E8C951D5B78B800AFD10E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		600E8CA21D5C7D1800AFD10E /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		600E8CA51D5C935E00AFD10E /* DropDownMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuCell.swift; sourceTree = "<group>"; };
+		606F9FD61DB24FCB0071C87A /* NEWS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NEWS.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				6009E27B1D522802006424BD /* README.md */,
+				606F9FD61DB24FCB0071C87A /* NEWS.md */,
 				600E8CA21D5C7D1800AFD10E /* TODO.md */,
 				6009E27A1D522802006424BD /* LICENSE */,
 				6009E2401D511955006424BD /* DropDownMenu.swift */,
