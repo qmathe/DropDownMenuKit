@@ -50,13 +50,13 @@ open class DropDownMenuCell : UITableViewCell {
 
 		super.layoutSubviews()
 
-		if let imageView = imageView , imageView.image != nil {
+		if let imageView = imageView, imageView.image != nil {
 			imageView.frame.size = iconSize
 			imageView.center = CGPoint(x: imageView.center.x, y: bounds.size.height / 2)
 		}
 		
 		if let customView = customView {
-			if let textLabel = textLabel , imageView?.image != nil {
+			if let textLabel = textLabel, imageView?.image != nil {
 				customView.frame.origin.x = textLabel.frame.origin.x
 			}
 			else

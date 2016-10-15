@@ -228,15 +228,15 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		return menuCells[(indexPath as NSIndexPath).row]
+		return menuCells[indexPath.row]
 	}
 	
 	open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-		return menuCells[(indexPath as NSIndexPath).row].menuAction != nil
+		return menuCells[indexPath.row].menuAction != nil
 	}
 
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let cell = menuCells[(indexPath as NSIndexPath).row]
+		let cell = menuCells[indexPath.row]
 		
 		for cell in menuCells {
 			cell.accessoryType = .none
