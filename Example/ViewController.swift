@@ -24,7 +24,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		updateMenuContentOffsets()
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		navigationBarMenu.container = view
@@ -39,11 +39,11 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		titleView = DropDownTitleView(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
 		titleView.addTarget(self,
 		            action: #selector(ViewController.willToggleNavigationBarMenu(_:)),
-		          forControlEvents: .TouchUpInside)
+		          for: .touchUpInside)
 		titleView.addTarget(self,
 		                    action: #selector(ViewController.didToggleNavigationBarMenu(_:)),
-		          forControlEvents: .ValueChanged)
-		titleView.titleLabel.textColor = UIColor.blackColor()
+		          for: .valueChanged)
+		titleView.titleLabel.textColor = UIColor.black
 		titleView.title = "Large"
 
 		navigationItem.titleView = titleView
@@ -51,7 +51,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		return titleView.title!
 	}
 	
-	func prepareNavigationBarMenu(currentChoice: String) {
+	func prepareNavigationBarMenu(_ currentChoice: String) {
 		navigationBarMenu = DropDownMenu(frame: view.bounds)
 		navigationBarMenu.delegate = self
 		
@@ -61,7 +61,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		firstCell.menuAction = #selector(ViewController.choose(_:))
 		firstCell.menuTarget = self
 		if currentChoice == "Large" {
-			firstCell.accessoryType = .Checkmark
+			firstCell.accessoryType = .checkmark
 		}
 		
 		let secondCell = DropDownMenuCell()
@@ -70,7 +70,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		secondCell.menuAction = #selector(ViewController.choose(_:))
 		secondCell.menuTarget = self
 		if currentChoice == "Small" {
-			firstCell.accessoryType = .Checkmark
+			firstCell.accessoryType = .checkmark
 		}
 
 		navigationBarMenu.menuCells = [firstCell, secondCell]
@@ -83,7 +83,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		// For a simple gray overlay in background
 		navigationBarMenu.backgroundView = UIView(frame: navigationBarMenu.bounds)
-		navigationBarMenu.backgroundView!.backgroundColor = UIColor.blackColor()
+		navigationBarMenu.backgroundView!.backgroundColor = UIColor.black
 		navigationBarMenu.backgroundAlpha = 0.7
 	}
 
@@ -103,8 +103,8 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let sortCell = DropDownMenuCell()
 		let sortSwitcher = UISegmentedControl(items: sortKeys)
 
-		sortSwitcher.selectedSegmentIndex = sortKeys.indexOf("Name")!
-		sortSwitcher.addTarget(self, action: #selector(ViewController.sort(_:)), forControlEvents: .ValueChanged)
+		sortSwitcher.selectedSegmentIndex = sortKeys.index(of: "Name")!
+		sortSwitcher.addTarget(self, action: #selector(ViewController.sort(_:)), for: .valueChanged)
 
 		sortCell.customView = sortSwitcher
 		sortCell.textLabel!.text = "Sort"
@@ -112,11 +112,11 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		sortCell.showsCheckmark = false
 
 		toolbarMenu.menuCells = [selectCell, sortCell]
-		toolbarMenu.direction = .Up
+		toolbarMenu.direction = .up
 
 		// For a simple gray overlay in background
 		toolbarMenu.backgroundView = UIView(frame: toolbarMenu.bounds)
-		toolbarMenu.backgroundView!.backgroundColor = UIColor.blackColor()
+		toolbarMenu.backgroundView!.backgroundColor = UIColor.black
 		toolbarMenu.backgroundAlpha = 0.7
 	}
 
@@ -127,17 +127,17 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 			navigationController!.toolbar.frame.size.height
 	}
 	
-	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
 
-		coordinator.animateAlongsideTransition({ (context) in
+		coordinator.animate(alongsideTransition: { (context) in
 			// If we put this only in -viewDidLayoutSubviews, menu animation is 
 			// messed up when selecting an item
 			self.updateMenuContentOffsets()
 		}, completion: nil)
 	}
 
-	@IBAction func choose(sender: AnyObject) {
+	@IBAction func choose(_ sender: AnyObject) {
 		titleView.title = (sender as! DropDownMenuCell).textLabel!.text
 	}
 
@@ -145,7 +145,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		print("Sent select action")
 	}
 
-	@IBAction func sort(sender: AnyObject) {
+	@IBAction func sort(_ sender: AnyObject) {
 		print("Sent sort action")
 	}
 
@@ -156,7 +156,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		toolbarMenu.show()
 	}
 
-	@IBAction func willToggleNavigationBarMenu(sender: DropDownTitleView) {
+	@IBAction func willToggleNavigationBarMenu(_ sender: DropDownTitleView) {
 		toolbarMenu.hide()
 
 		if sender.isUp {
@@ -167,11 +167,11 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		}
 	}
 
-	@IBAction func didToggleNavigationBarMenu(sender: DropDownTitleView) {
+	@IBAction func didToggleNavigationBarMenu(_ sender: DropDownTitleView) {
 		print("Sent did toggle navigation bar menu action")
 	}
 
-	func didTapInDropDownMenuBackground(menu: DropDownMenu) {
+	func didTapInDropDownMenuBackground(_ menu: DropDownMenu) {
 		if menu == navigationBarMenu {
 			titleView.toggleMenu()
 		}
@@ -183,6 +183,6 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 
 func statusBarHeight() -> CGFloat {
-	let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
+	let statusBarSize = UIApplication.shared.statusBarFrame.size
 	return min(statusBarSize.width, statusBarSize.height)
 }

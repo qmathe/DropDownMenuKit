@@ -7,43 +7,43 @@
 
 import UIKit
 
-public class DropDownTitleView : UIControl {
+open class DropDownTitleView : UIControl {
 
-	public static var iconSize = CGSize(width: 12, height: 12)
-	public lazy var menuDownImageView: UIImageView = {
+	open static var iconSize = CGSize(width: 12, height: 12)
+	open lazy var menuDownImageView: UIImageView = {
 		let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
 		menuDownImageView.frame.size = DropDownTitleView.iconSize
-		menuDownImageView.transform = CGAffineTransformMakeScale(1, -1)
+		menuDownImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
 
 		return menuDownImageView
 	}()
-	public lazy var menuUpImageView: UIImageView = {
+	open lazy var menuUpImageView: UIImageView = {
 		let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
 		menuUpImageView.frame.size = DropDownTitleView.iconSize
 
 		return menuUpImageView
 	}()
-	public lazy var imageView: UIView = {
+	open lazy var imageView: UIView = {
 		// For flip animation, we need a container view
 		// See http://stackoverflow.com/questions/11847743/transitionfromview-and-strange-behavior-with-flip
 		let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: DropDownTitleView.iconSize))
 		
-		imageView.autoresizingMask = [.FlexibleTopMargin, .FlexibleBottomMargin]
+		imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
 
 		return imageView
 	}()
-	public lazy var titleLabel: UILabel = {
+	open lazy var titleLabel: UILabel = {
 		let titleLabel = UILabel()
 
-		titleLabel.font = UIFont.boldSystemFontOfSize(titleLabel.font.pointSize)
-		titleLabel.textColor = UIColor.whiteColor()
-		titleLabel.autoresizingMask = [.FlexibleTopMargin, .FlexibleBottomMargin]
+		titleLabel.font = UIFont.boldSystemFont(ofSize: titleLabel.font.pointSize)
+		titleLabel.textColor = UIColor.white
+		titleLabel.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
 
 		return titleLabel
 	}()
-	public var title: String? {
+	open var title: String? {
 		get {
 			return titleLabel.text
 		}
@@ -55,8 +55,8 @@ public class DropDownTitleView : UIControl {
 			sizeToFit()
 		}
 	}
-	public var isUp: Bool { return menuUpImageView.superview != nil }
-	public var toggling = false
+	open var isUp: Bool { return menuUpImageView.superview != nil }
+	open var toggling = false
 	
 	// MARK: - Initialization
 	
@@ -70,7 +70,7 @@ public class DropDownTitleView : UIControl {
 	}
 	
 	// To support adding outlets/actions later and access them during initialization
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		setUp()
 	}
 
@@ -82,24 +82,24 @@ public class DropDownTitleView : UIControl {
 
 		let recognizer = UITapGestureRecognizer(target: self, action: #selector(DropDownTitleView.toggleMenu))
 	
-		userInteractionEnabled = true
+		isUserInteractionEnabled = true
 		addGestureRecognizer(recognizer)
 		
 		title = "Untitled"
 	}
 	
-	func imageNamed(name: String) -> UIImage {
-		let bundle = NSBundle(forClass: self.dynamicType)
-		return UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)!
+	func imageNamed(_ name: String) -> UIImage {
+		let bundle = Bundle(for: type(of: self))
+		return UIImage(named: name, in: bundle, compatibleWith: nil)!
 	}
 	
 	// MARK: - Layout
 	
-	override public func sizeThatFits(size: CGSize) -> CGSize {
+	override open func sizeThatFits(_ size: CGSize) -> CGSize {
 		return CGSize(width: imageView.frame.maxX, height: frame.size.height)
 	}
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		titleLabel.frame.origin.x = 0
@@ -111,23 +111,23 @@ public class DropDownTitleView : UIControl {
 	
 	// MARK: - Actions
 	
-	@IBAction public func toggleMenu() {
+	@IBAction open func toggleMenu() {
 		if toggling {
 			return
 		}
 		toggling = true
 		let viewToReplace = isUp ? menuUpImageView : menuDownImageView
 		let replacementView = isUp ? menuDownImageView : menuUpImageView
-		let options = isUp ? UIViewAnimationOptions.TransitionFlipFromTop : UIViewAnimationOptions.TransitionFlipFromBottom
+		let options = isUp ? UIViewAnimationOptions.transitionFlipFromTop : UIViewAnimationOptions.transitionFlipFromBottom
 		
-		sendActionsForControlEvents(.TouchUpInside)
+		sendActions(for: .touchUpInside)
 
-		UIView.transitionFromView(viewToReplace,
-		                  toView: replacementView,
+		UIView.transition(from: viewToReplace,
+		                  to: replacementView,
 		                duration: 0.4,
 		                 options: options,
 		              completion: { (Bool) in
-			self.sendActionsForControlEvents(.ValueChanged)
+			self.sendActions(for: .valueChanged)
 			self.toggling = false
 		})
 	}
