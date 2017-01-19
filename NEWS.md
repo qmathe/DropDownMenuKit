@@ -1,6 +1,11 @@
 DropDownMenuKit NEWS
 ====================
 
+0.8.2
+-----
+
+- Migrated to Swift 3
+
 0.8.1
 -----
 
