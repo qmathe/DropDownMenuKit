@@ -58,7 +58,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let firstCell = DropDownMenuCell()
 		
 		firstCell.textLabel!.text = "Large"
-		firstCell.menuAction = #selector(ViewController.choose(_:))
+        firstCell.menuAction = #selector(ViewController.choose(_:))
 		firstCell.menuTarget = self
 		if currentChoice == "Large" {
 			firstCell.accessoryType = .checkmark
@@ -67,6 +67,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let secondCell = DropDownMenuCell()
 		
 		secondCell.textLabel!.text = "Small"
+        secondCell.rowHeight = 60
 		secondCell.menuAction = #selector(ViewController.choose(_:))
 		secondCell.menuTarget = self
 		if currentChoice == "Small" {
