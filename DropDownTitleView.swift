@@ -49,7 +49,7 @@ open class DropDownTitleView : UIControl {
     open lazy var imageView: UIView = {
         // For flip animation, we need a container view
         // See http://stackoverflow.com/questions/11847743/transitionfromview-and-strange-behavior-with-flip
-        let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: DropDownTitleView.iconSize))
+        let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: self.menuDownImageView.bounds.size))
         
         imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
         
