@@ -94,10 +94,10 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		
 		let selectCell = DropDownMenuCell()
 		
-		selectCell.textLabel!.text = "Select"
+		selectCell.textLabel!.text = "Change Title Icons"
 		selectCell.imageView!.image = UIImage(named: "Ionicons-ios-checkmark-outline")
 		selectCell.showsCheckmark = false
-		selectCell.menuAction = #selector(ViewController.select as (ViewController) -> () -> ())
+		selectCell.menuAction = #selector(ViewController.changeTitleIcons as (ViewController) -> () -> ())
 		selectCell.menuTarget = self
 		
 		let sortKeys = ["Name", "Date", "Size"]
@@ -142,8 +142,12 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		titleView.title = (sender as! DropDownMenuCell).textLabel!.text
 	}
 
-	@IBAction func select() {
-		print("Sent select action")
+	@IBAction func changeTitleIcons() {
+		titleView.iconSize = CGSize(width: 24, height: 24)
+        titleView.menuDownImageView.image = UIImage(named: "Ionicons-ios-checkmark-outline")
+        titleView.menuDownImageView.transform = CGAffineTransform.identity
+        titleView.menuDownImageView.tintColor = UIColor.green
+        titleView.menuUpImageView.image = UIImage(named: "Ionicons-ios-search")
 	}
 
 	@IBAction func sort(_ sender: AnyObject) {
