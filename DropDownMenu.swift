@@ -63,7 +63,8 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	open let menuView: UITableView
 	open var menuCells = [DropDownMenuCell]() {
 		didSet {
-			menuView.reloadData()
+            menuView.reloadData()
+			setNeedsLayout()
 		}
 	}
 	// The background view to be faded out with the background alpha, when the 
@@ -115,7 +116,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
-		menuView.sizeToFit()
+		menuView.frame.size.height = menuView.contentSize.height
 		contentView.frame.size.height = menuView.frame.size.height
 	}
 	
