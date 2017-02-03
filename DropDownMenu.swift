@@ -63,7 +63,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	open let menuView: UITableView
 	open var menuCells = [DropDownMenuCell]() {
 		didSet {
-            menuView.reloadData()
+			menuView.reloadData()
 			setNeedsLayout()
 		}
 	}
