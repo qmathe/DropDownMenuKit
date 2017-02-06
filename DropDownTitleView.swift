@@ -7,49 +7,30 @@
 
 import UIKit
 
-public struct DropDownTitleConfig {
-    let menuDownImageView : UIImageView
-    let menuUpImageView: UIImageView
-    
-    public init(menuUpImage: UIImage, menuDownImage: UIImage) {
-        self.menuUpImageView = UIImageView(image: menuUpImage)
-        self.menuDownImageView = UIImageView(image: menuDownImage)
-    }
-}
-
 open class DropDownTitleView : UIControl {
     
-    open static var iconSize = CGSize(width: 12, height: 12)
-    fileprivate var config : DropDownTitleConfig?
+    open var iconSize = CGSize(width: 12, height: 12) {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     
     open lazy var menuDownImageView: UIImageView = {
-        if let imageView = self.config?.menuDownImageView {
-            imageView.transform = CGAffineTransform(scaleX: 1, y: -1)
-            return imageView
-        } else {
-            let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
-            
-            menuDownImageView.frame.size = DropDownTitleView.iconSize
-            menuDownImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
-            
-            return menuDownImageView
-        }
+        let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
+        
+        menuDownImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        
+        return menuDownImageView
     }()
     open lazy var menuUpImageView: UIImageView = {
-        if let imageView = self.config?.menuUpImageView {
-            return imageView
-        } else {
-            let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
-            
-            menuUpImageView.frame.size = DropDownTitleView.iconSize
-            
-            return menuUpImageView
-        }
+        let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
+        
+        return menuUpImageView
     }()
     open lazy var imageView: UIView = {
         // For flip animation, we need a container view
         // See http://stackoverflow.com/questions/11847743/transitionfromview-and-strange-behavior-with-flip
-        let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: self.menuDownImageView.bounds.size))
+        let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: self.iconSize))
         
         imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
         
@@ -85,13 +66,6 @@ open class DropDownTitleView : UIControl {
         super.init(frame: frame)
         setUp()
     }
-    
-    public init(frame: CGRect, config: DropDownTitleConfig) {
-        super.init(frame: frame)
-        self.config = config
-        setUp()
-    }
-    
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -129,6 +103,10 @@ open class DropDownTitleView : UIControl {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
+        
+        menuDownImageView.frame.size = iconSize
+        menuUpImageView.frame.size = iconSize
+        imageView.frame.size = iconSize
         
         titleLabel.frame.origin.x = 0
         titleLabel.center.y = frame.height / 2

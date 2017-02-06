@@ -37,6 +37,10 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		// We want to ensure the space between title and image remains constant, 
 		// even when title view is moved to remain centered (but never resized).
 		titleView = DropDownTitleView(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
+        titleView.iconSize = CGSize(width: 24, height: 24)
+        titleView.menuDownImageView.image = UIImage(named: "Ionicons-ios-checkmark-outline")
+        titleView.menuDownImageView.transform = CGAffineTransform.identity
+        titleView.menuUpImageView.image = UIImage(named: "Ionicons-ios-search")
 		titleView.addTarget(self,
 		            action: #selector(ViewController.willToggleNavigationBarMenu(_:)),
 		          for: .touchUpInside)
