@@ -227,6 +227,10 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return menuCells.count
 	}
+    
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return menuCells[indexPath.row].rowHeight
+    }
 
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		return menuCells[indexPath.row]
