@@ -13,6 +13,7 @@ open class DropDownTitleView : UIControl {
 	open lazy var menuDownImageView: UIImageView = {
 		let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
+        menuDownImageView.tintColor = UIColor.black
 		menuDownImageView.frame.size = DropDownTitleView.iconSize
 		menuDownImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
 
@@ -21,6 +22,7 @@ open class DropDownTitleView : UIControl {
 	open lazy var menuUpImageView: UIImageView = {
 		let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
+        menuUpImageView.tintColor = UIColor.black
 		menuUpImageView.frame.size = DropDownTitleView.iconSize
 
 		return menuUpImageView
