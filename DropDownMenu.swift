@@ -115,8 +115,9 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
+        let contentHeight = menuCells.reduce(0) { $0 + $1.rowHeight }
 		
-		menuView.frame.size.height = menuView.contentSize.height
+		menuView.frame.size.height = contentHeight
 		contentView.frame.size.height = menuView.frame.size.height
 	}
 	
