@@ -234,7 +234,11 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
     }
 
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		return menuCells[indexPath.row]
+        let temCell = menuCells[indexPath.row]
+        if (temCell.nowChecked){
+            temCell.accessoryType = .checkmark
+        }
+		return temCell
 	}
 	
 	open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
