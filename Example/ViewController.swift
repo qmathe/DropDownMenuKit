@@ -32,11 +32,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	}
 
 	func prepareNavigationBarMenuTitleView() -> String {
-		// Both title label and image view are fixed horizontally inside title
-		// view, UIKit is responsible to center title view in the navigation bar.
-		// We want to ensure the space between title and image remains constant, 
-		// even when title view is moved to remain centered (but never resized).
-		titleView = DropDownTitleView(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
+		titleView = DropDownTitleView()
 		titleView.addTarget(self,
 		            action: #selector(ViewController.willToggleNavigationBarMenu(_:)),
 		          for: .touchUpInside)

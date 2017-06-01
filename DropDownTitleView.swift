@@ -32,18 +32,13 @@ open class DropDownTitleView : UIControl {
 	open lazy var imageView: UIView = {
 		// For flip animation, we need a container view
 		// See http://stackoverflow.com/questions/11847743/transitionfromview-and-strange-behavior-with-flip
-		let imageView = UIView(frame: CGRect(origin: CGPoint.zero, size: self.iconSize))
-		
-		imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
-
-		return imageView
+		return UIView(frame: CGRect(origin: CGPoint.zero, size: self.iconSize))
 	}()
 	open lazy var titleLabel: UILabel = {
 		let titleLabel = UILabel()
 
 		titleLabel.font = UIFont.boldSystemFont(ofSize: titleLabel.font.pointSize)
 		titleLabel.textColor = UIColor.white
-		titleLabel.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
 
 		return titleLabel
 	}()
@@ -53,12 +48,12 @@ open class DropDownTitleView : UIControl {
 		}
 		set {
 			titleLabel.text = newValue
-	
-			titleLabel.sizeToFit()
+            titleLabel.sizeToFit()
+            titleWidth = titleLabel.frame.width
 			layoutSubviews()
-			sizeToFit()
 		}
 	}
+    private var titleWidth: CGFloat = 0
 	open var isUp: Bool { return menuUpImageView.superview != nil }
 	open var toggling = false
 	
@@ -83,6 +78,8 @@ open class DropDownTitleView : UIControl {
 
 		addSubview(titleLabel)
 		addSubview(imageView)
+        
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
 		let recognizer = UITapGestureRecognizer(target: self, action: #selector(DropDownTitleView.toggleMenu))
 	
@@ -98,10 +95,15 @@ open class DropDownTitleView : UIControl {
 	}
 	
 	// MARK: - Layout
-	
-	override open func sizeThatFits(_ size: CGSize) -> CGSize {
-		return CGSize(width: imageView.frame.maxX, height: frame.size.height)
-	}
+    
+    private  let spacing: CGFloat = 4
+    
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        guard let superview = newSuperview else {
+            return
+        }
+        frame = superview.bounds
+    }
 	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
@@ -109,11 +111,18 @@ open class DropDownTitleView : UIControl {
         menuDownImageView.frame.size = iconSize
         menuUpImageView.frame.size = iconSize
         imageView.frame.size = iconSize
+        
+        let maxTitleWidth = frame.width - 2 * (spacing + imageView.frame.width)
 		
-		titleLabel.frame.origin.x = 0
-		titleLabel.center.y = frame.height / 2
+		titleLabel.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        if titleWidth > maxTitleWidth {
+            titleLabel.frame.origin.x = spacing + imageView.frame.width
+            titleLabel.frame.size.width = maxTitleWidth
+        } else {
+            titleLabel.frame.size.width = titleWidth
+        }
 
-		imageView.frame.origin.x = titleLabel.frame.maxX + 4
+		imageView.frame.origin.x = titleLabel.frame.maxX + spacing
 		imageView.center.y = frame.height / 2
 	}
 	
