@@ -1,6 +1,17 @@
 DropDownMenuKit NEWS
 ====================
 
+0.8.3
+-----
+
+- New customization options
+	- row height
+	- icon size
+	- up/down images
+- Fixed title to always appear correctly centered in navigation bar
+	- long titles are now supported
+- Fixed height of menu view when setting its cells after it has been resized
+
 0.8.2
 -----
 
