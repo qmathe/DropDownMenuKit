@@ -102,8 +102,17 @@ open class DropDownTitleView : UIControl {
         guard let superview = newSuperview else {
             return
         }
+		// Will trigger layoutSubviews() without having resize the title view yet
+		// e.g. (origin = (x = 0, y = 0), size = (width = 320, height = 44)
         frame = superview.bounds
     }
+
+	// Centers the title when DropDownMenu.selectMenuCell() isn't called while creating the menu
+	open override func didMoveToWindow() {
+		// Will trigger layoutSubviews() with the title view resized according to autoresizing
+		// e.g. (origin = (x = 58, y = 0), size = (width = 211.5, height = 44))
+		layoutSubviews()
+	}
 	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
