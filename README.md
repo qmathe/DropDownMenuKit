@@ -60,4 +60,5 @@ Drop DropDownMenu.swift, DropDownMenuCell.swift, DropDownTitleView.swift and Dro
 Contribution
 ------------
 Author : 	Quentin Mathé 	[@quentin_mathe](https://twitter.com/quentin_mathe)
+
 Contributor : 	Herrick Wolber	[@estar2005](https://twitter.com/estar2005)
