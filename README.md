@@ -55,3 +55,9 @@ Build DropDownMenuKit framework and drop it into your Xcode project.
 #### Files
 
 Drop DropDownMenu.swift, DropDownMenuCell.swift, DropDownTitleView.swift and DropDownMenuKit.xcassets into your Xcode project.
+
+
+Contribution
+------------
+
+[@estar2005](https://twitter.com/estar2005)
