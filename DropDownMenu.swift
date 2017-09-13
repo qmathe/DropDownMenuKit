@@ -78,15 +78,15 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			}
 		}
 	}
-	open var backgroundAlpha = CGFloat(1)
-	var newTableViewFrame : CGRect
+    open var backgroundAlpha = CGFloat(1)
+    var newTableViewFrame : CGRect
     
 	// MARK: - Initialization
 	
-    override public init(frame: CGRect) {
+	override public init(frame: CGRect) {
         contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
         contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-		
+        
         menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
         menuView.autoresizingMask = .flexibleWidth
         menuView.isScrollEnabled = false
@@ -120,12 +120,12 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	
 	// MARK: - Layout
 	
-	open override func layoutSubviews() {
-		super.layoutSubviews()
+    open override func layoutSubviews() {
+        super.layoutSubviews()
         
         let contentHeight = menuCells.reduce(0) { $0 + $1.rowHeight }
         
-		menuView.frame.size.height = contentHeight
+        menuView.frame.size.height = contentHeight
         
         //  Set the right height for tableView
         //
@@ -139,8 +139,8 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
             menuView.frame.size.height = newTableViewFrame.size.height - visibleContentOffset
         }
         
-		contentView.frame.size.height = menuView.frame.size.height
-	}
+        contentView.frame.size.height = menuView.frame.size.height
+    }
 	
 	// MARK: - Selection
 	
