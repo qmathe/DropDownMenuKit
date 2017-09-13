@@ -84,12 +84,12 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	// MARK: - Initialization
 	
 	override public init(frame: CGRect) {
-		contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
 		
-		menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-		menuView.autoresizingMask = .flexibleWidth
-		menuView.isScrollEnabled = false
+        menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+        menuView.autoresizingMask = .flexibleWidth
+        menuView.isScrollEnabled = false
         menuView.isScrollEnabled = true
         menuView.bounces = false
         menuView.showsVerticalScrollIndicator = false
