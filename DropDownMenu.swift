@@ -83,7 +83,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
     
 	// MARK: - Initialization
 	
-	override public init(frame: CGRect) {
+    override public init(frame: CGRect) {
         contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
         contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
 		
