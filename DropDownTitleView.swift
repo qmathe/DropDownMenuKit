@@ -9,15 +9,15 @@ import UIKit
 
 open class DropDownTitleView : UIControl {
 
-    open var iconSize = CGSize(width: 12, height: 12) {
-        didSet {
-            setNeedsLayout()
-        }
-    }
+	open var iconSize = CGSize(width: 12, height: 12) {
+		didSet {
+			setNeedsLayout()
+		}
+	}
 	open lazy var menuDownImageView: UIImageView = {
 		let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
-        menuDownImageView.tintColor = UIColor.black
+		menuDownImageView.tintColor = UIColor.black
 		menuDownImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
 
 		return menuDownImageView
@@ -25,7 +25,7 @@ open class DropDownTitleView : UIControl {
 	open lazy var menuUpImageView: UIImageView = {
 		let menuUpImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
-        menuUpImageView.tintColor = UIColor.black
+		menuUpImageView.tintColor = UIColor.black
 
 		return menuUpImageView
 	}()
@@ -48,17 +48,17 @@ open class DropDownTitleView : UIControl {
 		}
 		set {
 			titleLabel.text = newValue
-            titleLabel.sizeToFit()
-            titleWidth = titleLabel.frame.width
+			titleLabel.sizeToFit()
+			titleWidth = titleLabel.frame.width
 			layoutSubviews()
 		}
 	}
     private var titleWidth: CGFloat = 0
 	open var isUp: Bool { return menuUpImageView.superview != nil }
 	open var toggling = false
-	
+
 	// MARK: - Initialization
-	
+
 	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		setUp()
@@ -92,29 +92,29 @@ open class DropDownTitleView : UIControl {
 		
 		title = "Untitled"
 	}
-	
+
 	func imageNamed(_ name: String) -> UIImage {
 		let bundle = Bundle(for: type(of: self))
 		return UIImage(named: name, in: bundle, compatibleWith: nil)!
 	}
-	
+
 	// MARK: - Layout
-    
-    private  let spacing: CGFloat = 4
-    // For iOS 11 and above
+
+	private  let spacing: CGFloat = 4
+	// For iOS 11 and above
 	override open var intrinsicContentSize: CGSize {
 		return UILayoutFittingExpandedSize
 	}
 
-    // For iOS 10 and below
-    open override func willMove(toSuperview newSuperview: UIView?) {
-        guard let superview = newSuperview else {
-            return
-        }
+	// For iOS 10 and below
+	open override func willMove(toSuperview newSuperview: UIView?) {
+		guard let superview = newSuperview else {
+			return
+		}
 		// Will trigger layoutSubviews() without having resize the title view yet
 		// e.g. (origin = (x = 0, y = 0), size = (width = 320, height = 44)
-        frame = superview.bounds
-    }
+		frame = superview.bounds
+	}
 
 	// Centers the title when DropDownMenu.selectMenuCell() isn't called while creating the menu
 	open override func didMoveToWindow() {
@@ -126,26 +126,26 @@ open class DropDownTitleView : UIControl {
 	open override func layoutSubviews() {
 		super.layoutSubviews()
 
-        menuDownImageView.frame.size = iconSize
-        menuUpImageView.frame.size = iconSize
-        imageView.frame.size = iconSize
-        
-        let maxTitleWidth = frame.width - 2 * (spacing + imageView.frame.width)
+		menuDownImageView.frame.size = iconSize
+		menuUpImageView.frame.size = iconSize
+		imageView.frame.size = iconSize
+
+		let maxTitleWidth = frame.width - 2 * (spacing + imageView.frame.width)
 		
 		titleLabel.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        if titleWidth > maxTitleWidth {
-            titleLabel.frame.origin.x = spacing + imageView.frame.width
-            titleLabel.frame.size.width = maxTitleWidth
-        } else {
-            titleLabel.frame.size.width = titleWidth
-        }
+		if titleWidth > maxTitleWidth {
+			titleLabel.frame.origin.x = spacing + imageView.frame.width
+			titleLabel.frame.size.width = maxTitleWidth
+		} else {
+			titleLabel.frame.size.width = titleWidth
+		}
 
 		imageView.frame.origin.x = titleLabel.frame.maxX + spacing
 		imageView.center.y = frame.height / 2
 	}
-	
+
 	// MARK: - Actions
-	
+
 	@IBAction open func toggleMenu() {
 		if toggling {
 			return
@@ -154,14 +154,14 @@ open class DropDownTitleView : UIControl {
 		let viewToReplace = isUp ? menuUpImageView : menuDownImageView
 		let replacementView = isUp ? menuDownImageView : menuUpImageView
 		let options = isUp ? UIViewAnimationOptions.transitionFlipFromTop : UIViewAnimationOptions.transitionFlipFromBottom
-		
+
 		sendActions(for: .touchUpInside)
 
 		UIView.transition(from: viewToReplace,
-		                  to: replacementView,
-		                duration: 0.4,
-		                 options: options,
-		              completion: { (Bool) in
+		                    to: replacementView,
+		              duration: 0.4,
+		               options: options,
+		            completion: { (Bool) in
 			self.sendActions(for: .valueChanged)
 			self.toggling = false
 		})

@@ -35,10 +35,10 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		titleView = DropDownTitleView()
 		titleView.addTarget(self,
 		            action: #selector(ViewController.willToggleNavigationBarMenu(_:)),
-		          for: .touchUpInside)
+		               for: .touchUpInside)
 		titleView.addTarget(self,
-		                    action: #selector(ViewController.didToggleNavigationBarMenu(_:)),
-		          for: .valueChanged)
+		            action: #selector(ViewController.didToggleNavigationBarMenu(_:)),
+		               for: .valueChanged)
 		titleView.titleLabel.textColor = UIColor.black
 		titleView.title = "Large"
 
@@ -54,7 +54,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let firstCell = DropDownMenuCell()
 		
 		firstCell.textLabel!.text = "Large"
-        firstCell.menuAction = #selector(ViewController.choose(_:))
+		firstCell.menuAction = #selector(ViewController.choose(_:))
 		firstCell.menuTarget = self
 		if currentChoice == "Large" {
 			firstCell.accessoryType = .checkmark
@@ -63,7 +63,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let secondCell = DropDownMenuCell()
 		
 		secondCell.textLabel!.text = "Small"
-        secondCell.rowHeight = 60
+		secondCell.rowHeight = 60
 		secondCell.menuAction = #selector(ViewController.choose(_:))
 		secondCell.menuTarget = self
 		if currentChoice == "Small" {

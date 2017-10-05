@@ -83,10 +83,10 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		}
 	}
 	open var backgroundAlpha = CGFloat(1)
-	var newTableViewFrame : CGRect
-    
+	var newTableViewFrame: CGRect
+
 	// MARK: - Initialization
-	
+
 	override public init(frame: CGRect) {
 		contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
 		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
@@ -94,12 +94,12 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
 		menuView.autoresizingMask = .flexibleWidth
 		menuView.isScrollEnabled = false
-        	menuView.isScrollEnabled = true
-        	menuView.bounces = false
-        	menuView.showsVerticalScrollIndicator = false
-        	menuView.showsHorizontalScrollIndicator = false
-        
-        	newTableViewFrame = frame
+		menuView.isScrollEnabled = true
+		menuView.bounces = false
+		menuView.showsVerticalScrollIndicator = false
+		menuView.showsHorizontalScrollIndicator = false
+
+		newTableViewFrame = frame
 
 		contentView.addSubview(menuView)
 
@@ -119,28 +119,28 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
-	    	fatalError("init(coder:) has not been implemented")
+		fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK: - Layout
 	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
-        
-        	let contentHeight = menuCells.reduce(0) { $0 + $1.rowHeight }
-        
+
+		let contentHeight = menuCells.reduce(0) { $0 + $1.rowHeight }
+
 		menuView.frame.size.height = contentHeight
-        
-        	//  Set the right height for tableView
+
+		//  Set the right height for tableView
 		//
 		//  If the total from the cells is less thant the height of the screen
 		//  then we keep all cells height
 		//  Else we take keep the the height of the screen so we can scroll from all its elements
-        
+
 		if contentHeight <= newTableViewFrame.size.height {
-		    menuView.frame.size.height = contentHeight
+			menuView.frame.size.height = contentHeight
 		} else {
-		    menuView.frame.size.height = newTableViewFrame.size.height - visibleContentOffset
+			menuView.frame.size.height = newTableViewFrame.size.height - visibleContentOffset
 		}
 		contentView.frame.size.height = menuView.frame.size.height
 	}
@@ -195,11 +195,11 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		isHidden = false
 
 		UIView.animate(withDuration: 0.4,
-		                    delay: 0,
-		   usingSpringWithDamping: 1,
-		    initialSpringVelocity: 1,
-		                  options: UIViewAnimationOptions(),
-		               animations: {
+		                      delay: 0,
+		     usingSpringWithDamping: 1,
+		      initialSpringVelocity: 1,
+		                    options: UIViewAnimationOptions(),
+		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = self.visibleContentOffset
 			}
@@ -208,7 +208,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			}
 			self.backgroundView?.alpha = self.backgroundAlpha
 		},
-		               completion: nil)
+		                 completion: nil)
 	}
 	
 	@IBAction open func hide() {
@@ -228,11 +228,11 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		isHidden = false
 		
 		UIView.animate(withDuration: 0.4,
-		                    delay: 0,
-		   usingSpringWithDamping: 1,
-		    initialSpringVelocity: 1,
-		                  options: UIViewAnimationOptions(),
-		               animations: {
+		                      delay: 0,
+		     usingSpringWithDamping: 1,
+		      initialSpringVelocity: 1,
+		                    options: UIViewAnimationOptions(),
+		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentOffset)
 			}
@@ -255,10 +255,10 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return menuCells.count
 	}
-    
-    	open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        	return menuCells[indexPath.row].rowHeight
-    	}
+
+	open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return menuCells[indexPath.row].rowHeight
+	}
 
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		return menuCells[indexPath.row]
