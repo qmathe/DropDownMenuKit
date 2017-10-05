@@ -78,8 +78,12 @@ open class DropDownTitleView : UIControl {
 
 		addSubview(titleLabel)
 		addSubview(imageView)
-        
-        autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+		if #available(iOS 11, *) {
+			translatesAutoresizingMaskIntoConstraints = false
+		} else {
+			autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		}
 
 		let recognizer = UITapGestureRecognizer(target: self, action: #selector(DropDownTitleView.toggleMenu))
 	
@@ -97,7 +101,12 @@ open class DropDownTitleView : UIControl {
 	// MARK: - Layout
     
     private  let spacing: CGFloat = 4
-    
+    // For iOS 11 and above
+	override open var intrinsicContentSize: CGSize {
+		return UILayoutFittingExpandedSize
+	}
+
+    // For iOS 10 and below
     open override func willMove(toSuperview newSuperview: UIView?) {
         guard let superview = newSuperview else {
             return
