@@ -20,10 +20,10 @@ public enum DropDownMenuRevealDirection {
 open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
 
 	open weak var delegate: DropDownMenuDelegate?
-	open var container: UIView! {
+	open weak var container: UIView? {
 		didSet {
 			removeFromSuperview()
-			container.addSubview(self)
+			container?.addSubview(self)
 		}
 	}
 	// The content view fills the entire container, so we can use it to fade 
@@ -51,6 +51,10 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			if isHidden {
 				return
 			}
+			guard let container = container else {
+				fatalError("DropDownMenu.container must have been set in [presentingController viewDidAppear:]")
+			}
+
 			if direction == .down {
 				contentView.frame.origin.y = visibleContentOffset
 			}
@@ -174,8 +178,9 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	@IBAction open func show() {
-		precondition(container != nil, "DropDownMenu.container must be set in [presentingController viewDidAppear:]")
-		
+		guard let container = container else {
+			 fatalError("DropDownMenu.container must be set in [presentingController viewDidAppear:]")
+		}
 		if !isHidden {
 			return
 		}
@@ -199,7 +204,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 				self.contentView.frame.origin.y = self.visibleContentOffset
 			}
 			else {
-				self.contentView.frame.origin.y = self.container.frame.height - self.contentView.frame.height  - self.visibleContentOffset
+				self.contentView.frame.origin.y = container.frame.height - self.contentView.frame.height  - self.visibleContentOffset
 			}
 			self.backgroundView?.alpha = self.backgroundAlpha
 		},
@@ -207,7 +212,9 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	@IBAction open func hide() {
-	
+		guard let container = container else {
+			 fatalError("DropDownMenu.container must be set in [presentingController viewDidAppear:]")
+		}
 		if isHidden {
 			return
 		}
@@ -230,7 +237,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentOffset)
 			}
 			else {
-				self.contentView.frame.origin.y = self.container.frame.height + self.hiddenContentOffset
+				self.contentView.frame.origin.y = container.frame.height + self.hiddenContentOffset
 			}
 			self.backgroundView?.alpha = 0
 		},
