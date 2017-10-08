@@ -16,19 +16,14 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		let title = prepareNavigationBarMenuTitleView()
 
 		prepareNavigationBarMenu(title)
 		prepareToolbarMenu()
-		updateMenuContentOffsets()
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
 
 		navigationBarMenu.container = view
 		toolbarMenu.container = view
+		updateMenuContentOffsets()
 	}
 
 	func prepareNavigationBarMenuTitleView() -> String {
@@ -72,11 +67,6 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		navigationBarMenu.menuCells = [firstCell, secondCell]
 		navigationBarMenu.selectMenuCell(secondCell)
-		
-		// If we set the container to the controller view, the value must be set
-		// on the hidden content offset (not the visible one)
-		navigationBarMenu.visibleContentOffset =
-			navigationController!.navigationBar.frame.size.height + statusBarHeight()
 
 		// For a simple gray overlay in background
 		navigationBarMenu.backgroundView = UIView(frame: navigationBarMenu.bounds)
@@ -118,16 +108,20 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	}
 
 	func updateMenuContentOffsets() {
-		navigationBarMenu.visibleContentOffset =
-			navigationController!.navigationBar.frame.size.height + statusBarHeight()
-		toolbarMenu.visibleContentOffset =
-			navigationController!.toolbar.frame.size.height
+		let visibleContentInsets =
+			UIEdgeInsets(top: navigationController!.navigationBar.frame.size.height + statusBarHeight(),
+			            left: 0,
+			          bottom: navigationController!.toolbar.frame.size.height,
+			           right: 0)
+
+		navigationBarMenu.visibleContentInsets = visibleContentInsets
+		toolbarMenu.visibleContentInsets = visibleContentInsets
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
 
-		coordinator.animate(alongsideTransition: { (context) in
+		coordinator.animate(alongsideTransition: { _ in
 			// If we put this only in -viewDidLayoutSubviews, menu animation is 
 			// messed up when selecting an item
 			self.updateMenuContentOffsets()
