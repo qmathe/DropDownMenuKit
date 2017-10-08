@@ -52,8 +52,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 
 			if direction == .down {
 				contentView.frame.origin.y = hiddenContentInsets.top
-			}
-			else {
+			} else {
 				contentView.frame.origin.y = container.frame.height - contentView.frame.height - hiddenContentInsets.bottom
 			}
 			setNeedsLayout()
@@ -78,8 +77,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 
 			if direction == .down {
 				contentView.frame.origin.y = visibleContentInsets.top
-			}
-			else {
+			} else {
 				contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentInsets.bottom
 			}
 			setNeedsLayout()
@@ -198,8 +196,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		backgroundView?.alpha = 0
 		if direction == .down {
 			contentView.frame.origin.y = -(contentView.frame.height + hiddenContentInsets.top)
-		}
-		else {
+		} else {
 			contentView.frame.origin.y = container.frame.height + hiddenContentInsets.bottom
 		}
 		isHidden = false
@@ -212,8 +209,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = self.visibleContentInsets.top
-			}
-			else {
+			} else {
 				self.contentView.frame.origin.y = container.frame.height - self.contentView.frame.height  - self.visibleContentInsets.bottom
 			}
 			self.backgroundView?.alpha = self.backgroundAlpha
@@ -231,8 +227,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 
 		if direction == .down {
 			contentView.frame.origin.y = visibleContentInsets.bottom
-		}
-		else {
+		} else {
 			contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentInsets.top
 		}
 		isHidden = false
@@ -245,8 +240,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentInsets.bottom)
-			}
-			else {
+			} else {
 				self.contentView.frame.origin.y = container.frame.height + self.hiddenContentInsets.top
 			}
 			self.backgroundView?.alpha = 0

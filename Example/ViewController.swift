@@ -156,8 +156,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		if sender.isUp {
 			navigationBarMenu.hide()
-		}
-		else {
+		} else {
 			navigationBarMenu.show()
 		}
 	}
@@ -169,8 +168,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 	func didTapInDropDownMenuBackground(_ menu: DropDownMenu) {
 		if menu == navigationBarMenu {
 			titleView.toggleMenu()
-		}
-		else {
+		} else {
 			menu.hide()
 		}
 	}
