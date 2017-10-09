@@ -23,7 +23,11 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		navigationBarMenu.container = view
 		toolbarMenu.container = view
-		updateMenuContentOffsets()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		updateMenuContentInsets()
 	}
 
 	func prepareNavigationBarMenuTitleView() -> String {
@@ -107,12 +111,18 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		toolbarMenu.backgroundAlpha = 0.7
 	}
 
-	func updateMenuContentOffsets() {
-		let visibleContentInsets =
-			UIEdgeInsets(top: navigationController!.navigationBar.frame.size.height + statusBarHeight(),
-			            left: 0,
-			          bottom: navigationController!.toolbar.frame.size.height,
-			           right: 0)
+	func updateMenuContentInsets() {
+		var visibleContentInsets: UIEdgeInsets
+
+		if #available(iOS 11, *) {
+			visibleContentInsets = view.safeAreaInsets
+		} else {
+			visibleContentInsets =
+				UIEdgeInsets(top: navigationController!.navigationBar.frame.size.height + statusBarHeight(),
+				            left: 0,
+				          bottom: navigationController!.toolbar.frame.size.height,
+				           right: 0)
+		}
 
 		navigationBarMenu.visibleContentInsets = visibleContentInsets
 		toolbarMenu.visibleContentInsets = visibleContentInsets
@@ -124,7 +134,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		coordinator.animate(alongsideTransition: { _ in
 			// If we put this only in -viewDidLayoutSubviews, menu animation is 
 			// messed up when selecting an item
-			self.updateMenuContentOffsets()
+			self.updateMenuContentInsets()
 		}, completion: nil)
 	}
 
