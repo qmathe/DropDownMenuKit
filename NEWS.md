@@ -1,6 +1,14 @@
 DropDownMenuKit NEWS
 ====================
 
+0.8.4
+-----
+
+- iOS 11 support
+- Improved menu to become scrollable menu when too many rows are presented
+	- DropDownMenu.visibleContentOffset has been replaced with visibleContentInsets to support this
+- Fixed memory leak preventing menu to be released
+
 0.8.3
 -----
 
