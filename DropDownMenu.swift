@@ -71,6 +71,9 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			guard let container = container else {
 				fatalError("DropDownMenu.container must have been set to customize content insets")
 			}
+			// Menu height needs to be recomputed
+			setNeedsLayout()
+
 			if isHidden {
 				return
 			}
@@ -80,7 +83,6 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			} else {
 				contentView.frame.origin.y = container.frame.height - contentView.frame.height - visibleContentInsets.bottom
 			}
-			setNeedsLayout()
 		}
 	}
 	open var direction = DropDownMenuRevealDirection.down
