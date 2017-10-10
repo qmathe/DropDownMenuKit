@@ -5,5 +5,5 @@ notifications:
       - quentin.mathe@gmail.com
 xcode_project: DropDownMenuKit.xcodeproj
 xcode_scheme: DropDownMenuExample
-osx_image: xcode8.3
+osx_image: xcode9
 script: xcodebuild -project DropDownMenuKit.xcodeproj -scheme DropDownMenuExample build  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
