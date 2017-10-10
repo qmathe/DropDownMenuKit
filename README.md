@@ -23,9 +23,11 @@ To see in action, take a look at the very beginning of [Placeboard](http://www.p
 Compatibility
 -------------
 
-DropDownMenuKit requires iOS 8 or higher and is written in Swift 3. For Swift 2 support, use the release 0.8.1 or branch [swift-2.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-2.2).
+DropDownMenuKit requires iOS 8 or higher and is written in Swift 3.
 
-**Note**: If you are interested in iOS 7 support, rewrite DropDownTitleView.imageNamed(:).
+**Note:** The framework can be compiled with Xcode 8, but Xcode 9 is required to build the example.
+
+For Swift 2 support, use the release 0.8.1 or branch [swift-2.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-2.2).
 
 Installation
 ------------
