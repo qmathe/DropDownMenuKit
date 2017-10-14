@@ -48,7 +48,18 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="wmr-Qt-lyK"/>
+                    <navigationItem key="navigationItem" id="wmr-Qt-lyK">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" systemItem="trash" id="msL-tP-YMO">
+                            <connections>
+                                <action selector="removeNavigationBarMenuCell" destination="mq4-AA-pe2" id="Z34-tH-PGf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Item" systemItem="add" id="Ox9-lJ-Nog">
+                            <connections>
+                                <action selector="addNavigationBarMenuCell" destination="mq4-AA-pe2" id="Qpc-0j-4bN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pl3-yO-U1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

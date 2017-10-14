@@ -151,7 +151,11 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 
 		menuView.frame.size.height = scrollable ? maxContentHeight : contentHeight
 		contentView.frame.size.height = menuView.frame.height
+
 		// Reset scroll view content offset after rotation
+		if menuView.visibleCells.isEmpty {
+			return
+		}
 		menuView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
 	}
 	

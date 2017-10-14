@@ -10,9 +10,13 @@ import DropDownMenuKit
 
 class ViewController: UIViewController, DropDownMenuDelegate {
 
+	// MARK: - UI Elements
+
 	var titleView: DropDownTitleView!
 	@IBOutlet var navigationBarMenu: DropDownMenu!
 	@IBOutlet var toolbarMenu: DropDownMenu!
+
+	// MARK: - Initialization
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -39,7 +43,6 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		            action: #selector(ViewController.didToggleNavigationBarMenu(_:)),
 		               for: .valueChanged)
 		titleView.titleLabel.textColor = UIColor.black
-		titleView.title = "Large"
 
 		navigationItem.titleView = titleView
 		
@@ -51,21 +54,23 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		navigationBarMenu.delegate = self
 		
 		let firstCell = DropDownMenuCell()
+		let longTitle = "The quick brown fox jumps over the lazy dog"
 		
-		firstCell.textLabel!.text = "Large"
+		firstCell.textLabel!.text = longTitle
 		firstCell.menuAction = #selector(ViewController.choose(_:))
 		firstCell.menuTarget = self
-		if currentChoice == "Large" {
+		if currentChoice == longTitle {
 			firstCell.accessoryType = .checkmark
 		}
 		
 		let secondCell = DropDownMenuCell()
+		let shortTitle = "Short"
 		
-		secondCell.textLabel!.text = "Small"
+		secondCell.textLabel!.text = shortTitle
 		secondCell.rowHeight = 60
 		secondCell.menuAction = #selector(ViewController.choose(_:))
 		secondCell.menuTarget = self
-		if currentChoice == "Small" {
+		if currentChoice == shortTitle {
 			firstCell.accessoryType = .checkmark
 		}
 
@@ -111,6 +116,8 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		toolbarMenu.backgroundAlpha = 0.7
 	}
 
+	// MARK: - Layout
+
 	func updateMenuContentInsets() {
 		var visibleContentInsets: UIEdgeInsets
 
@@ -138,8 +145,33 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		}, completion: nil)
 	}
 
+	// MARK: - Updating UI
+
+	func validateBarItems() {
+		navigationItem.leftBarButtonItem?.isEnabled = titleView.isUp && !navigationBarMenu.menuCells.isEmpty
+		navigationItem.rightBarButtonItem?.isEnabled = titleView.isUp
+	}
+
+	// MARK: - Actions
+
 	@IBAction func choose(_ sender: AnyObject) {
 		titleView.title = (sender as! DropDownMenuCell).textLabel!.text
+	}
+
+	@IBAction func removeNavigationBarMenuCell() {
+		navigationBarMenu.menuCells = Array(navigationBarMenu.menuCells.dropLast())
+		validateBarItems()
+	}
+
+	@IBAction func addNavigationBarMenuCell() {
+		let cell = DropDownMenuCell()
+
+		cell.textLabel!.text = String(navigationBarMenu.menuCells.count)
+		cell.menuAction = #selector(ViewController.choose(_:))
+		cell.menuTarget = self
+
+		navigationBarMenu.menuCells += [cell]
+		validateBarItems()
 	}
 
 	@IBAction func changeTitleIcons() {
@@ -173,6 +205,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 	@IBAction func didToggleNavigationBarMenu(_ sender: DropDownTitleView) {
 		print("Sent did toggle navigation bar menu action")
+		validateBarItems()
 	}
 
 	func didTapInDropDownMenuBackground(_ menu: DropDownMenu) {
