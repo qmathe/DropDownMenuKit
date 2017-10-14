@@ -1,6 +1,15 @@
 DropDownMenuKit NEWS
 ====================
 
+0.8.5
+-----
+
+- Migrated to Swift 4
+- Improved example to showcase:
+	- adding/removing menu entries
+	- menu scrolling
+	- long title support
+
 0.8.4
 -----
 
@@ -36,3 +45,4 @@ DropDownMenuKit NEWS
 ---
 
 - First release
+
