@@ -3,7 +3,7 @@ DropDownMenuKit
 
 [![Build Status](https://travis-ci.org/qmathe/DropDownMenuKit.svg?branch=master)](https://travis-ci.org/qmathe/DropDownMenuKit)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com)
-[![Language Swift 4.0](https://img.shields.io/badge/Language-Swift%203.0-orange.svg?style=flat)](https://swift.org)
+[![Language Swift 4.0](https://img.shields.io/badge/Language-Swift%204.0-orange.svg?style=flat)](https://swift.org)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/qmathe/DropDownMenuKit/LICENSE)
 [![README Russian](https://img.shields.io/badge/readme-Russian-yellow.svg)](http://gargo.of.by/dropdownmenukit/)
 
@@ -23,7 +23,7 @@ To see in action, take a look at the very beginning of [Placeboard](http://www.p
 Compatibility
 -------------
 
-DropDownMenuKit requires iOS 8 or higher and is written in Swift 4.
+DropDownMenuKit requires Xcode 9 and supports iOS 8 or higher.
 
 | Swift   | DropDownMenuKit                                                                                                                                                                                                                            |
 | ------- |  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
