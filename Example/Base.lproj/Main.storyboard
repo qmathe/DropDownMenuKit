@@ -54,7 +54,7 @@
                                 <action selector="removeNavigationBarMenuCell" destination="mq4-AA-pe2" id="Z34-tH-PGf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Item" systemItem="add" id="Ox9-lJ-Nog">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="Ox9-lJ-Nog">
                             <connections>
                                 <action selector="addNavigationBarMenuCell" destination="mq4-AA-pe2" id="Qpc-0j-4bN"/>
                             </connections>
