@@ -292,6 +292,6 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			return
 		}
 
-		UIApplication.shared.sendAction(cell.menuAction, to: cell.menuTarget, from: cell, for: nil)
+        cell.menuTarget.perform(cell.menuAction, with: cell)
 	}
 }
