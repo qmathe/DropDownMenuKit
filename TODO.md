@@ -9,3 +9,4 @@ DropDownMenuKit TODO
 - Add NSCoding support to DropDownMenuCell
 - Update example to showcase hiddenContentOffset
 - Better documentation (API and README)
+- Support grouping menu cells by section

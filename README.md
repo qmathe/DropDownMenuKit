@@ -23,11 +23,11 @@ To see in action, take a look at the very beginning of [Placeboard](http://www.p
 Compatibility
 -------------
 
-DropDownMenuKit requires Xcode 9 and supports iOS 8 or higher.
+DropDownMenuKit requires at least Xcode 9 and supports iOS 8 or higher.
 
 | Swift   | DropDownMenuKit                                                                                                                                                                                                                            |
 | ------- |  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| 4.X      | [master](https://github.com/qmathe/DropDownMenuKit/tree/master)                                                                                                                                             |
+| 4.X      | [0.8.5](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.5)                                                                                                                                             |
 | 3.X      | [0.8.4](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.4) or branch [swift-3.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-3.2) |
 | >= 2.2 | [0.8.1](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.1) or branch [swift-2.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-2.2) |
 
@@ -66,9 +66,9 @@ App Extension Usage
 
 ### Build Settings
 
-_DropDownMenuKit > Build Settings > Other Swift Flags_ must include **-DAPP_EXTENSION**
+Add **-DAPP_EXTENSION** to _DropDownMenuKit > Build Settings > Other Swift Flags_.
 
 ### Restrictions
 
-- `MenuCell.menuAction` must take a single argument
-- `MenuCell.menuTarget` must not be nil
+- `DropDownMenuCell.menuAction` must take a single argument
+- `DropDownMenuCell.menuTarget` must not be nil
