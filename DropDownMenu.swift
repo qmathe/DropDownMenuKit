@@ -288,10 +288,17 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		
 		tableView.deselectRow(at: indexPath, animated: true)
 		
-		if cell.menuAction == nil {
+		guard let menuAction = cell.menuAction else {
 			return
 		}
 
-        cell.menuTarget.perform(cell.menuAction, with: cell)
+		#if APP_EXTENSION
+			guard let menuTarget = cell.menuTarget, menuTarget.responds(to: menuAction) else {
+				return
+			}
+			_ = menuTarget.perform(menuAction, with: cell)
+		#else
+			UIApplication.shared.sendAction(menuAction, to: cell.menuTarget, from: cell, for: nil)
+		#endif
 	}
 }

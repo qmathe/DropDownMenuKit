@@ -17,8 +17,10 @@ open class DropDownMenuCell : UITableViewCell {
 			contentView.addSubview(customView)
 		}
 	}
-	open var menuAction: Selector!
-	open weak var menuTarget: AnyObject!
+    /// For an app extension, the selector must take an argument.
+	open var menuAction: Selector?
+    /// For an app extension, the menu target must not be nil.
+	open weak var menuTarget: AnyObject?
 	open var showsCheckmark = true
 	open var rowHeight: CGFloat = 44
 

@@ -59,3 +59,16 @@ Build DropDownMenuKit framework and drop it into your Xcode project.
 #### Files
 
 Drop DropDownMenu.swift, DropDownMenuCell.swift, DropDownTitleView.swift and DropDownMenuKit.xcassets into your Xcode project.
+
+
+App Extension Usage
+-------------------------
+
+### Build Settings
+
+_DropDownMenuKit > Build Settings > Other Swift Flags_ must include **-DAPP_EXTENSION**
+
+### Restrictions
+
+- `MenuCell.menuAction` must take a single argument
+- `MenuCell.menuTarget` must not be nil

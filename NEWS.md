@@ -9,6 +9,8 @@ DropDownMenuKit NEWS
 	- adding/removing menu entries
 	- menu scrolling
 	- long title support
+- Now usable in app extensions 
+	- DropDownMenuKit > Build Settings > Other Swift Flags must include -DAPP_EXTENSION 
 
 0.8.4
 -----
