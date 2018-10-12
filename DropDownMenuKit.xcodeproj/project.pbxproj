@@ -102,6 +102,7 @@
 				6009E22B1D5117FC006424BD /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		6009E22B1D5117FC006424BD /* Products */ = {
 			isa = PBXGroup;
