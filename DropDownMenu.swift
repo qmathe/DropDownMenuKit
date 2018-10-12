@@ -31,7 +31,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	//
 	// By default, it contains the menu view, but other subviews can be added to 
 	// it and laid out by overriding -layoutSubviews.
-	open let contentView: UIView
+	public let contentView: UIView
 	// This hidden insets can be used to customize the position of the menu at
 	// the end of the hiding animation.
 	//
@@ -86,7 +86,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		}
 	}
 	open var direction = DropDownMenuRevealDirection.down
-	open let menuView: UITableView
+	public let menuView: UITableView
 	open var menuCells = [DropDownMenuCell]() {
 		didSet {
 			menuView.reloadData()
