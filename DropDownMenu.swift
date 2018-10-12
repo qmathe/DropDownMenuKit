@@ -211,7 +211,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		                      delay: 0,
 		     usingSpringWithDamping: 1,
 		      initialSpringVelocity: 1,
-		                    options: UIViewAnimationOptions(),
+		                    options: UIView.AnimationOptions(),
 		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = self.visibleContentInsets.top
@@ -242,7 +242,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		                      delay: 0,
 		     usingSpringWithDamping: 1,
 		      initialSpringVelocity: 1,
-		                    options: UIViewAnimationOptions(),
+		                    options: UIView.AnimationOptions(),
 		                 animations: {
 			if self.direction == .down {
 				self.contentView.frame.origin.y = -(self.contentView.frame.height + self.hiddenContentInsets.bottom)

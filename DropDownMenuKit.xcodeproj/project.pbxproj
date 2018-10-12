@@ -189,12 +189,12 @@
 				TargetAttributes = {
 					6009E2291D5117FC006424BD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 					};
 					600E8C821D5B759300AFD10E = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -340,7 +340,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -389,7 +389,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

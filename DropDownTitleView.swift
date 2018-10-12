@@ -103,7 +103,7 @@ open class DropDownTitleView : UIControl {
 	private  let spacing: CGFloat = 4
 	// For iOS 11 and above
 	override open var intrinsicContentSize: CGSize {
-		return UILayoutFittingExpandedSize
+		return UIView.layoutFittingExpandedSize
 	}
 
 	// For iOS 10 and below
@@ -153,7 +153,7 @@ open class DropDownTitleView : UIControl {
 		toggling = true
 		let viewToReplace = isUp ? menuUpImageView : menuDownImageView
 		let replacementView = isUp ? menuDownImageView : menuUpImageView
-		let options = isUp ? UIViewAnimationOptions.transitionFlipFromTop : UIViewAnimationOptions.transitionFlipFromBottom
+		let options = isUp ? UIView.AnimationOptions.transitionFlipFromTop : UIView.AnimationOptions.transitionFlipFromBottom
 
 		sendActions(for: .touchUpInside)
 
