@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.author             = { "Quentin Mathé" => "quentin.mathe@gmail.com" }
   s.social_media_url   = "http://twitter.com/quentin_mathe"
 
+  s.swift_version = "4.1"
   s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/qmathe/DropDownMenuKit.git", :tag => "0.8.5" }
