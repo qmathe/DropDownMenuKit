@@ -6,7 +6,6 @@ DropDownMenuKit TODO
 - Add some presentation options for DropDownMenuCell to support UI patterns commonly seen in Apple's apps
 - May be make easier to customize DropDownMenuCell layout
 - Share code or reuse IconTextCell for DropDownMenuCell
-- Add NSCoding support to DropDownMenuCell
 - Update example to showcase hiddenContentOffset
 - Better documentation (API and README)
 - Support grouping menu cells by section

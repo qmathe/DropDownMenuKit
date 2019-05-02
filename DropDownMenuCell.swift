@@ -32,11 +32,19 @@ open class DropDownMenuCell : UITableViewCell {
 	
 	public init() {
 		super.init(style: .default, reuseIdentifier: NSStringFromClass(DropDownMenuCell.self))
-		textLabel?.text = "Untitled"
+		setUp()
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
+	}
+
+	open override func awakeFromNib() {
+		setUp()
+	}
+
+	private func setUp() {
+		textLabel?.text = "Untitled"
 	}
 	
 	// MARK: - Layout

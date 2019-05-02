@@ -31,7 +31,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	//
 	// By default, it contains the menu view, but other subviews can be added to 
 	// it and laid out by overriding -layoutSubviews.
-	public let contentView: UIView
+	public let contentView = UIView(frame: .zero)
 	// This hidden insets can be used to customize the position of the menu at
 	// the end of the hiding animation.
 	//
@@ -86,7 +86,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		}
 	}
 	open var direction = DropDownMenuRevealDirection.down
-	public let menuView: UITableView
+	public let menuView = UITableView(frame: .zero)
 	open var menuCells = [DropDownMenuCell]() {
 		didSet {
 			menuView.reloadData()
@@ -109,35 +109,39 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	// MARK: - Initialization
 
 	override public init(frame: CGRect) {
-		contentView = UIView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-		
-		menuView = UITableView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+		super.init(frame: frame)
+		setUp()
+	}
+
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+
+	open override func awakeFromNib() {
+		setUp()
+	}
+
+	private func setUp() {
+		menuView.frame.size = frame.size
 		menuView.autoresizingMask = .flexibleWidth
 		menuView.isScrollEnabled = true
 		menuView.bounces = false
 		menuView.showsVerticalScrollIndicator = true
 		menuView.showsHorizontalScrollIndicator = false
-
-		contentView.addSubview(menuView)
-
-		super.init(frame: frame)
-		
-		let gesture = UITapGestureRecognizer(target: self, action: #selector(DropDownMenu.tap(_:)))
-		gesture.delegate = self
-		addGestureRecognizer(gesture)
-
 		menuView.dataSource = self
 		menuView.delegate = self
 
+		contentView.frame.size = frame.size
+		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+		contentView.addSubview(menuView)
+
+		let gesture = UITapGestureRecognizer(target: self, action: #selector(DropDownMenu.tap(_:)))
+		gesture.delegate = self
+
+		addGestureRecognizer(gesture)
 		autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		isHidden = true
-
 		addSubview(contentView)
-	}
-
-	required public init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK: - Layout
