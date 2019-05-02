@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.swift_version = "4.2"
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/qmathe/DropDownMenuKit.git", :tag => "0.8.6"  }
+  s.source       = { :git => "https://github.com/qmathe/DropDownMenuKit.git" }
   s.source_files = '*.swift', '*.{h,m}'
   s.public_header_files = "*.h"
   s.resources    = "*.xcassets"
