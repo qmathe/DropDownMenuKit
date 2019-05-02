@@ -99,7 +99,7 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 		let sortCell = DropDownMenuCell()
 		let sortSwitcher = UISegmentedControl(items: sortKeys)
 
-		sortSwitcher.selectedSegmentIndex = sortKeys.index(of: "Name")!
+		sortSwitcher.selectedSegmentIndex = sortKeys.firstIndex(of: "Name")!
 		sortSwitcher.addTarget(self, action: #selector(ViewController.sort(_:)), for: .valueChanged)
 
 		sortCell.customView = sortSwitcher

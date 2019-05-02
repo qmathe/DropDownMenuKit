@@ -166,7 +166,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	/// If DropDownMenuCell.showsCheckmark is true, then the cell is marked with
 	/// a checkmark and all other cells are unchecked.
 	open func selectMenuCell(_ cell: DropDownMenuCell) {
-		guard let index = menuCells.index(of: cell) else {
+		guard let index = menuCells.firstIndex(of: cell) else {
 			fatalError("The menu cell to select must belong to the menu")
 		}
 		let indexPath = IndexPath(row: index, section: 0)
