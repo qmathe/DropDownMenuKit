@@ -164,7 +164,48 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		}
 		menuView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
 	}
-	
+
+	// MARK: - Animations
+
+	/// The duration taken by the animation when hiding/showing the menu and its background.
+	public var animationDuration: TimeInterval = 0.4
+	private let animationDelay: TimeInterval = 0
+	/// The animation part in charge of showing the menu (doesn't include the background animation).
+	public lazy var animateShowMenu: () -> () = {
+		UIView.animate(withDuration: self.animationDuration,
+		                      delay: self.animationDelay,
+		                    options: UIView.AnimationOptions(),
+		                 animations: { self.updateContentViewPosition(on: .show) },
+		                 completion: nil)
+	}
+	/// The animation part in charge of showing the background (doesn't include the menu animation).
+	public lazy var animateShowBackground: () -> () = {
+		UIView.animate(withDuration: self.animationDuration,
+		                      delay: self.animationDelay,
+		                    options: UIView.AnimationOptions(),
+		                 animations: { self.backgroundView?.alpha = self.backgroundAlpha },
+		                 completion: nil)
+	}
+	/// The animation part in charge of hiding the menu (doesn't include the background animation).
+	public lazy var animateHideMenu: () -> () = {
+		UIView.animate(withDuration: self.animationDuration,
+		                      delay: self.animationDelay,
+		                    options: UIView.AnimationOptions(),
+		                 animations: { self.updateContentViewPosition(on: .hide) },
+		                 completion: nil)
+	}
+	/// The animation part in charge of hiding the background (doesn't include the menu animation).
+	///
+	/// Must set `self.isHidden = true` when the animation completes (this implies the background
+	/// hiding animation is expected to have a duration equal or greater to the menu hiding animation).
+	public lazy var animateHideBackground: () -> () = {
+		UIView.animate(withDuration: self.animationDuration,
+		                      delay: self.animationDelay,
+		                    options: UIView.AnimationOptions(),
+		                 animations: { self.backgroundView?.alpha = 0 },
+		                 completion: { _ in self.isHidden = true })
+	}
+
 	// MARK: - Selection
 	
 	/// Selects the cell briefly and sends the cell menu action.
@@ -202,36 +243,16 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 			return
 		}
 		isHidden = false
-
-		UIView.animate(withDuration: 0.4,
-		                      delay: 0,
-		     usingSpringWithDamping: 1,
-		      initialSpringVelocity: 1,
-		                    options: UIView.AnimationOptions(),
-		                 animations: {
-			self.updateContentViewPosition(on: .show)
-			self.backgroundView?.alpha = self.backgroundAlpha
-		},
-		                 completion: nil)
+		animateShowMenu()
+		animateShowBackground()
 	}
 	
 	@IBAction open func hide() {
 		if isHidden {
 			return
 		}
-
-		UIView.animate(withDuration: 0.4,
-		                      delay: 0,
-		     usingSpringWithDamping: 1,
-		      initialSpringVelocity: 1,
-		                    options: UIView.AnimationOptions(),
-		                 animations: {
-			self.updateContentViewPosition(on: .hide)
-			self.backgroundView?.alpha = 0
-		},
-				       completion: { (Bool) in
-			self.isHidden = true
-		})
+		animateHideMenu()
+		animateHideBackground()
 	}
 	
 	// MARK: - Table View
