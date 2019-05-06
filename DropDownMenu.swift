@@ -32,39 +32,6 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	// By default, it contains the menu view, but other subviews can be added to 
 	// it and laid out by overriding -layoutSubviews.
 	public let contentView = UIView(frame: .zero)
-	// This hidden insets can be used to customize the position of the menu at
-	// the end of the hiding animation.
-	//
-	// If the container doesn't extend under the toolbar and navigation bar,
-	// this is useful to ensure the hiding animation continues until the menu is
-	// positioned outside of the screen, rather than stopping the animation when 
-	// the menu is covered by the toolbar or navigation bar.
-	//
-	// Left and right insets are currently ignored.
-	open var hiddenContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
-		didSet {
-			setNeedsLayout()
-		}
-	}
-	// This visible insets can be used to customize the position of the menu
-	// at the end of the showing animation.
-	//
-	// If the container extends under the toolbar and navigation bar, this is 
-	// useful to ensure the menu won't be covered by the toolbar or navigation 
-	// bar once the showing animation is done.
-	//
-	// Left and right insets are currently ignored.
-	open var visibleContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
-		didSet {
-			// Menu height needs to be recomputed
-			setNeedsLayout()
-		}
-	}
-	open var direction = DropDownMenuRevealDirection.down {
-		didSet {
-			setNeedsLayout()
-		}
-	}
 	public let menuView = UITableView(frame: .zero)
 	open var menuCells = [DropDownMenuCell]() {
 		didSet {
@@ -125,6 +92,40 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	// MARK: - Layout
+
+	// This hidden insets can be used to customize the position of the menu at
+	// the end of the hiding animation.
+	//
+	// If the container doesn't extend under the toolbar and navigation bar,
+	// this is useful to ensure the hiding animation continues until the menu is
+	// positioned outside of the screen, rather than stopping the animation when
+	// the menu is covered by the toolbar or navigation bar.
+	//
+	// Left and right insets are currently ignored.
+	open var hiddenContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
+		didSet {
+			setNeedsLayout()
+		}
+	}
+	// This visible insets can be used to customize the position of the menu
+	// at the end of the showing animation.
+	//
+	// If the container extends under the toolbar and navigation bar, this is
+	// useful to ensure the menu won't be covered by the toolbar or navigation
+	// bar once the showing animation is done.
+	//
+	// Left and right insets are currently ignored.
+	open var visibleContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
+		didSet {
+			// Menu height needs to be recomputed
+			setNeedsLayout()
+		}
+	}
+	open var direction = DropDownMenuRevealDirection.down {
+		didSet {
+			setNeedsLayout()
+		}
+	}
 
 	private enum LayoutOperation {
 		case show
