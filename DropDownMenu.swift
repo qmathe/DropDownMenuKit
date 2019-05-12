@@ -169,8 +169,19 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	// MARK: - Animations
 
 	public struct Transition {
-		public typealias Animation = () -> ()
-		public typealias Completion = (Operation) -> ()
+		public struct Animation {
+			public typealias Block = () -> ()
+
+			public let before: Block
+			public let change: Block
+			public let after: Block
+
+			public init(before: @escaping Block = {}, change: @escaping Block, after: @escaping Block = {}) {
+				self.before = before
+				self.change = change
+				self.after = after
+			}
+		}
 
 		/// The duration taken by the animation when hiding/showing the menu and its background.
 		public var duration: TimeInterval
@@ -179,34 +190,34 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 
 		public var show: [Animation]
 		public var hide: [Animation]
-		public var completion: Completion
 	}
 
 	public lazy var transition = Transition(
 		duration: 0.4,
 		options: AnimationOptions(),
 		show: [showMenuAnimation, showBackgroundAnimation],
-		hide: [hideMenuAnimation, hideBackgroundAnimation],
-		completion: animateCompletion
+		hide: [hideMenuAnimation, hideBackgroundAnimation]
 	)
 
 	/// The animation part in charge of showing the menu (doesn't include the background animation).
-	public private(set) lazy var showMenuAnimation: Transition.Animation = { self.updateContentViewPosition(on: .show) }
+	public private(set) lazy var showMenuAnimation = Transition.Animation(change: {
+		self.updateContentViewPosition(on: .show)
+	})
 	/// The animation part in charge of showing the background (doesn't include the menu animation).
-	public private(set) lazy var showBackgroundAnimation: Transition.Animation = { self.backgroundView?.alpha = self.backgroundAlpha }
+	public private(set) lazy var showBackgroundAnimation = Transition.Animation(change: {
+		self.backgroundView?.alpha = self.backgroundAlpha
+	})
 	/// The animation part in charge of hiding the menu (doesn't include the background animation).
-	public private(set) lazy var hideMenuAnimation = { self.updateContentViewPosition(on: .hide) }
+	public private(set) lazy var hideMenuAnimation = Transition.Animation(change: {
+		self.updateContentViewPosition(on: .hide)
+	})
 	/// The animation part in charge of hiding the background (doesn't include the menu animation).
 	///
 	/// Must set `self.isHidden = true` when the animation completes (this implies the background
 	/// hiding animation is expected to have a duration equal or greater to the menu hiding animation).
-	public private(set) lazy var hideBackgroundAnimation: Transition.Animation = { self.backgroundView?.alpha = 0 }
-	public private(set) lazy var animateCompletion: Transition.Completion = { operation in
-		guard operation == .hide else {
-			return
-		}
-		self.isHidden = true
-	}
+	public private(set) lazy var hideBackgroundAnimation = Transition.Animation(change: {
+		self.backgroundView?.alpha = 0
+	})
 
 	// MARK: - Selection
 	
@@ -244,23 +255,28 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		if !isHidden {
 			return
 		}
+		transition.show.map { $0.before }.joined()()
 		isHidden = false
 		UIView.animate(withDuration: transition.duration,
 		                      delay: transition.delay,
 		                    options: transition.options,
-		                 animations: transition.show.joined(),
-						 completion: { _ in self.transition.completion(.show) })
+							animations: transition.show.map { $0.change }.joined(),
+						 completion: { _ in self.transition.show.map { $0.after }.joined()() })
 	}
 	
 	@IBAction open func hide() {
 		if isHidden {
 			return
 		}
+		transition.hide.map { $0.before }.joined()()
 		UIView.animate(withDuration: transition.duration,
 		                      delay: transition.delay,
 		                    options: transition.options,
-		                 animations: transition.hide.joined(),
-						 completion: { _ in self.transition.completion(.hide) })
+		                 animations: transition.hide.map { $0.change }.joined(),
+		                 completion: { _ in
+			self.transition.hide.map { $0.after }.joined()()
+			self.isHidden = true
+		})
 	}
 	
 	// MARK: - Table View
@@ -310,8 +326,8 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	}
 }
 
-private extension Array where Element == DropDownMenu.Transition.Animation {
-	func joined() -> DropDownMenu.Transition.Animation {
+private extension Array where Element == DropDownMenu.Transition.Animation.Block {
+	func joined() -> DropDownMenu.Transition.Animation.Block {
 		return { self.forEach { $0() } }
 	}
 }
