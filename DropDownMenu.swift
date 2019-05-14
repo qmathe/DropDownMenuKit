@@ -71,6 +71,11 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 	private func setUp() {
 		menuView.frame.size = frame.size
 		menuView.autoresizingMask = .flexibleWidth
+		if #available(iOS 11.0, *) {
+			// Prevent table cells to be shifted downwards abruptly before the menu slides up under the navigation bar
+			menuView.contentInsetAdjustmentBehavior = .never
+			menuView.insetsContentViewsToSafeArea = false
+		}
 		menuView.isScrollEnabled = true
 		menuView.bounces = false
 		menuView.showsVerticalScrollIndicator = true
