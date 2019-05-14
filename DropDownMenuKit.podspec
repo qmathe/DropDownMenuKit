@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DropDownMenuKit"
-  s.version      = "0.8.6"
+  s.version      = "0.9"
   s.summary      = "UIKit drop down menu, simple yet flexible and written in Swift"
   s.description  = "DropDownMenuKit is a custom UIKit control to show a menu attached to the navigation bar or toolbar. The menu appears with a sliding animation and can be deeply customized. For example, with icons, embedded controls, or a checkmark to denote a selected row among multiple menu cells."
   s.homepage     = "https://github.com/qmathe/DropDownMenuKit"

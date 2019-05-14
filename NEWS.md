@@ -1,10 +1,12 @@
 DropDownMenuKit NEWS
 ====================
 
-0.8.7
------
+0.9
+---
 
 - Migrated to Swift 5
+- New custom transition API
+- Fixed menu cells not always visible during hiding animation on iOS 11 and higher
 
 0.8.6
 -----
