@@ -84,7 +84,7 @@ open class DropDownMenu : UIView, UITableViewDataSource, UITableViewDelegate, UI
 		menuView.delegate = self
 
 		contentView.frame.size = frame.size
-		contentView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+		contentView.autoresizingMask = [.flexibleWidth]
 		contentView.addSubview(menuView)
 
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(DropDownMenu.tap(_:)))
