@@ -22,14 +22,9 @@ To see in action, take a look at the very beginning of [Placeboard](http://www.p
 Compatibility
 -------------
 
-DropDownMenuKit requires at least Xcode 9 and supports iOS 8 and higher.
+DropDownMenuKit requires at least Xcode 10.2 (introducing Swift 5) and supports iOS 11 and higher.
 
-| Swift   | DropDownMenuKit                                                                                                                                                                                                                            |
-| ------- |  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| 5         | [0.9](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.9) or branch [swift-5](https://github.com/qmathe/DropDownMenuKit/tree/swift-5) |
-| 4.2      | [0.8.6](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.6) or branch [swift-4.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-4.2) |
-| 4.X      | [0.8.5](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.5) or branch [swift-4.1](https://github.com/qmathe/DropDownMenuKit/tree/swift-4.1) |
-| 3.X      | [0.8.4](https://github.com/qmathe/DropDownMenuKit/releases/tag/0.8.4) or branch [swift-3.2](https://github.com/qmathe/DropDownMenuKit/tree/swift-3.2) |
+For versions compatible with older Swift versions, see branches named _swift-x.x_
 
 Installation
 ------------

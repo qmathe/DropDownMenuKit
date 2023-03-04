@@ -1,6 +1,11 @@
 DropDownMenuKit NEWS
 ====================
 
+1.0
+---
+
+- Fix crash on icon loading when subclassing DropDownMenuTitleView
+
 0.9
 ---
 
