@@ -24,7 +24,7 @@ Compatibility
 
 DropDownMenuKit requires at least Xcode 10.2 (introducing Swift 5) and supports iOS 11 and higher.
 
-For versions compatible with older Swift versions, see branches named _swift-x.x_
+For versions compatible with Swift 3 and 4, see branches named _swift-3/4.x_.
 
 Installation
 ------------
