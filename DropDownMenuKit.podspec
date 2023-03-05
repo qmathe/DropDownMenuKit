@@ -16,6 +16,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/qmathe/DropDownMenuKit.git", :tag => "1.0" }
   s.source_files = "*.swift", "*.{h,m}"
   s.public_header_files = "*.h"
-  s.resources    = "*.xcassets"
-
+  s.resource_bundles    = { "DropDownMenuKitAssets" => ["*.xcassets"] }
 end

@@ -14,6 +14,21 @@ open class DropDownTitleView : UIControl {
 			setNeedsLayout()
 		}
 	}
+	// When compiling as a static library with CocoaPods, image assets end ups in the main bundle 
+	// rather than the framework bundle:
+	// AppName.app/Resources/DropDownMenuKit/Assets.car
+	lazy var imageBundle: Bundle = {
+		let bundle = Bundle(for: DropDownTitleView.self)
+				
+		if let podBundleURL = bundle.url(forResource: "DropDownMenuKitAssets", withExtension: "bundle") {
+		   guard let podBundle = Bundle(url: podBundleURL) else {
+				fatalError("Missing image assets for DropDownMenUKit")
+			}
+			return podBundle
+		} else {
+			return bundle
+		}
+	}()
 	open lazy var menuDownImageView: UIImageView = {
 		let menuDownImageView = UIImageView(image: self.imageNamed("Ionicons-chevron-up"))
 
@@ -93,9 +108,8 @@ open class DropDownTitleView : UIControl {
 		title = "Untitled"
 	}
 
-	func imageNamed(_ name: String) -> UIImage {
-		let bundle = Bundle(for: DropDownTitleView.self)
-		return UIImage(named: name, in: bundle, compatibleWith: nil)!
+	open func imageNamed(_ name: String) -> UIImage {
+		return UIImage(named: name, in: imageBundle, compatibleWith: nil)!
 	}
 
 	// MARK: - Layout
