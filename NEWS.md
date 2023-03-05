@@ -5,6 +5,8 @@ DropDownMenuKit NEWS
 ---
 
 - Fix crash on icon loading when subclassing DropDownMenuTitleView
+- Fix name conflicts between DropDownMenuKit and app assets when compiling as static library with CocoaPods
+- Update example to ensure overlays don't cover navigation bar and toolbar in iOS 11 and higher
 
 0.9
 ---

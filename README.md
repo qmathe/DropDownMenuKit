@@ -26,6 +26,9 @@ DropDownMenuKit requires at least Xcode 10.2 (introducing Swift 5) and supports 
 
 For versions compatible with Swift 3 and 4, see branches named _swift-3/4.x_.
 
+For now, the code base remains compatible with older iOS versions (8 or higher), but these older 
+versions are not supported anymore.
+
 Installation
 ------------
 
@@ -37,10 +40,8 @@ Add the following line to your Cartfile, run `carthage update` to build the fram
 	
 ### CocoaPods
 
-Add the following lines to your Podfile and run `pod install` with CocoaPods 0.36 or newer.
+Add the following lines to your Podfile and run `pod install` with CocoaPods 1.9 or newer.
 
-	use_frameworks!
-	
 	pod "DropDownMenuKit"
 
 ### Manually

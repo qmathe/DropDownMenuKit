@@ -118,6 +118,24 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 	// MARK: - Layout
 
+	// Resize overlays in order they doesn't cover navigation bar and toolbar (this can be changed 
+	// to cover more or less on screen depending on your needs).
+	func updateOverlayInsets() {
+		if #available(iOS 11, *) {
+			updateOverlayInsets(for: navigationBarMenu)
+			updateOverlayInsets(for: toolbarMenu)
+		}
+	}
+	
+	func updateOverlayInsets(for menu: DropDownMenu) {
+		let overlayTop = menu.visibleContentInsets.top
+		let overlayBottom = menu.visibleContentInsets.bottom
+		let overlayHeight = menu.frame.height - overlayTop - overlayBottom
+
+		menu.backgroundView?.frame.origin.y = overlayTop
+		menu.backgroundView?.frame.size.height = overlayHeight
+	}
+
 	func updateMenuContentInsets() {
 		var visibleContentInsets: UIEdgeInsets
 
@@ -133,6 +151,8 @@ class ViewController: UIViewController, DropDownMenuDelegate {
 
 		navigationBarMenu.visibleContentInsets = visibleContentInsets
 		toolbarMenu.visibleContentInsets = visibleContentInsets
+		
+		updateOverlayInsets()
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
